@@ -43,7 +43,7 @@
 
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="subject_id" class="col-form-label font-weight-bold">Subject:</label>
+                                <label for="subject_id" class="col-form-label font-weight-bold">Занятие:</label>
                                 <select required id="subject_id" name="subject_id" data-placeholder="Select Class First" class="form-control select-search">
                                   @if($selected)
                                         @foreach($subjects->where('my_class_id', $my_class_id) as $s)

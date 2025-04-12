@@ -1,10 +1,10 @@
 @extends('layouts.master')
-@section('page_title', 'Edit Subject - '.$s->name. ' ('.$s->my_class->name.')')
+@section('page_title', 'Редактировать занятие - '.$s->name. ' ('.$s->my_class->name.')')
 @section('content')
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h6 class="card-title">Edit Subject - {{$s->my_class->name }}</h6>
+            <h6 class="card-title">Редактировать занятие - {{$s->my_class->name }}</h6>
             {!! Qs::getPanelOptions() !!}
         </div>
 
@@ -16,7 +16,7 @@
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
                             <div class="col-lg-9">
-                                <input name="name" value="{{ $s->name }}" required type="text" class="form-control" placeholder="Name of Subject">
+                                <input name="name" value="{{ $s->name }}" required type="text" class="form-control" placeholder="Название занятия">
                             </div>
                         </div>
 

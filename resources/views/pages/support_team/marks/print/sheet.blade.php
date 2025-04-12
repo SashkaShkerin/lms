@@ -21,7 +21,7 @@
 <table style="width:100%; border-collapse:collapse; border: 1px solid #000; margin: 10px auto;" border="1">
     <thead>
     <tr>
-        <th rowspan="2">SUBJECTS</th>
+        <th rowspan="2">Занятия</th>
         <th colspan="3">CONTINUOUS ASSESSMENT</th>
         <th rowspan="2">EXAM<br>(60)</th>
         <th rowspan="2">FINAL MARKS <br> (100%)</th>

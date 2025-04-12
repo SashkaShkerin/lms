@@ -64,10 +64,10 @@
                                         {{--SUBJECT--}}
                                         <div class="form-group row">
                                             <label for="subject_id"
-                                                   class="col-lg-3 col-form-label font-weight-semibold">Subject
+                                                   class="col-lg-3 col-form-label font-weight-semibold">Занятие
                                                 <span class="text-danger">*</span></label>
                                             <div class="col-lg-9">
-                                                <select required data-placeholder="Select Subject"
+                                                <select required data-placeholder="Выбрать занятие"
                                                         class="form-control select-search"
                                                         name="subject_id" id="subject_id">
                                                     @foreach($subjects as $sub)
