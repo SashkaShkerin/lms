@@ -29,8 +29,9 @@
 <script src="{{ asset('global_assets/js/plugins/uploaders/fileinput/fileinput.min.js') }}"></script>
 
 {{--Calendar--}}
-<script src="{{ asset('global_assets/js/plugins/ui/fullcalendar/fullcalendar.min.js') }}"></script>
-<!-- <script src="{{ asset('global_assets/plugins/fullcalendar-6.1.17/index.global.min.js') }}"></script> -->
+<!-- <script src="{{ asset('global_assets/js/plugins/ui/fullcalendar/fullcalendar.min.js') }}"></script> -->
+<script src="{{ asset('global_assets/plugins/fullcalendar-6.1.17/index.global.min.js') }}"></script>
+
 
 
 <script src=" {{ asset('assets/js/app.js') }} "></script>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Qs;
 use App\Repositories\UserRepo;
+use App\Models\Event;
+
 
 class HomeController extends Controller
 {
@@ -37,11 +39,35 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        $d=[];
-        if(Qs::userIsTeamSAT()){
-            $d['users'] = $this->user->getAll();
+
+        $events = Event::all();
+
+        $_events = [];
+        foreach ($events as $event) {
+
+
+
+            $_events[] = [
+                'id' => $event->id,
+                'title' => 'my event',
+                'start' => (new \DateTime($event->start_time, new \DateTimeZone('UTC')))->format('Y-m-d\TH:i:s'),
+                'end' => (new \DateTime($event->end_time, new \DateTimeZone('UTC')))->format('Y-m-d\TH:i:s'),
+
+                'start' => $event->start_time,
+                'end' => $event->end_time,
+
+                'extendedProps' => [
+                    'department' => 'BioChemistry'
+                ],
+                  'description' => 'Lecture'
+            ];
         }
 
-        return view('pages.support_team.dashboard', $d);
+        $_events = array_merge($_events, $_events);
+        
+
+
+        return view('pages.home.dashboard')
+            ->with('events', $_events);
     }
 }
