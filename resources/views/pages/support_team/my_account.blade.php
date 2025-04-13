@@ -23,21 +23,21 @@
                             <form method="post" action="{{ route('my_account.change_pass') }}">
                                 @csrf @method('put')
 
-                                <div class="form-group row">
+                                <div class="form-group row mb-3">
                                     <label for="current_password" class="col-lg-3 col-form-label font-weight-semibold">Current Password <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
                                         <input id="current_password" name="current_password"  required type="password" class="form-control" >
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <div class="form-group row mb-3">
                                     <label for="password" class="col-lg-3 col-form-label font-weight-semibold">New Password <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
                                         <input id="password" name="password"  required type="password" class="form-control" >
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <div class="form-group row mb-3">
                                     <label for="password_confirmation" class="col-lg-3 col-form-label font-weight-semibold">Confirm Password <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
                                         <input id="password_confirmation" name="password_confirmation"  required type="password" class="form-control" >
@@ -58,7 +58,7 @@
                                 <form enctype="multipart/form-data" method="post" action="{{ route('my_account.update') }}">
                                     @csrf @method('put')
 
-                                    <div class="form-group row">
+                                    <div class="form-group row mb-3">
                                         <label for="name" class="col-lg-3 col-form-label font-weight-semibold">Name</label>
                                         <div class="col-lg-9">
                                             <input disabled="disabled" id="name" class="form-control" type="text" value="{{ $my->name }}">
@@ -66,7 +66,7 @@
                                     </div>
 
                                     @if($my->username)
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-3">
                                             <label for="username" class="col-lg-3 col-form-label font-weight-semibold">Username</label>
                                             <div class="col-lg-9">
                                                 <input disabled="disabled" id="username" class="form-control" type="text" value="{{ $my->username }}">
@@ -75,7 +75,7 @@
 
                                     @else
 
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-3">
                                             <label for="username" class="col-lg-3 col-form-label font-weight-semibold">Username </label>
                                             <div class="col-lg-9">
                                                 <input id="username" name="username"  type="text" class="form-control" >
@@ -83,35 +83,35 @@
                                         </div>
                                     @endif
 
-                                    <div class="form-group row">
+                                    <div class="form-group row mb-3">
                                         <label for="email" class="col-lg-3 col-form-label font-weight-semibold">Email </label>
                                         <div class="col-lg-9">
                                             <input id="email" value="{{ $my->email }}" name="email"  type="email" class="form-control" >
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
+                                    <div class="form-group row mb-3">
                                         <label for="phone" class="col-lg-3 col-form-label font-weight-semibold">Phone </label>
                                         <div class="col-lg-9">
                                             <input id="phone" value="{{ $my->phone }}" name="phone"  type="text" class="form-control" >
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
+                                    <div class="form-group row mb-3">
                                         <label for="phone2" class="col-lg-3 col-form-label font-weight-semibold">Telephone </label>
                                         <div class="col-lg-9">
                                             <input id="phone2" value="{{ $my->phone2 }}" name="phone2"  type="text" class="form-control" >
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
+                                    <div class="form-group row mb-3">
                                         <label for="address" class="col-lg-3 col-form-label font-weight-semibold">Address </label>
                                         <div class="col-lg-9">
                                             <input id="address" value="{{ $my->address }}" name="address"  type="text"  class="form-control" >
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
+                                    <div class="form-group row mb-3">
                                         <label for="address" class="col-lg-3 col-form-label font-weight-semibold">Change Photo </label>
                                         <div class="col-lg-9">
                                             <input  accept="image/*" type="file" name="photo" class="form-input-styled" data-fouc>

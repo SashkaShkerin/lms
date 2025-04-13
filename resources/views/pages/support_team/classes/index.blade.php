@@ -74,14 +74,14 @@
                         <div class="col-md-6">
                             <form class="ajax-store" method="post" action="{{ route('classes.store') }}">
                                 @csrf
-                                <div class="form-group row">
+                                <div class="form-group row mb-3">
                                     <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
                                         <input name="name" value="{{ old('name') }}" required type="text" class="form-control" placeholder="Name of Class">
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <div class="form-group row mb-3">
                                     <label for="class_type_id" class="col-lg-3 col-form-label font-weight-semibold">Class Type</label>
                                     <div class="col-lg-9">
                                         <select required data-placeholder="Select Class Type" class="form-control select" name="class_type_id" id="class_type_id">

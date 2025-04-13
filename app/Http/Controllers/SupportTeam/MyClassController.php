@@ -23,11 +23,36 @@ class MyClassController extends Controller
     }
 
     public function index()
-    {
-        $d['my_classes'] = $this->my_class->all();
-        $d['class_types'] = $this->my_class->getTypes();
+    { 
+        $list = [
+            'columns' => [
+                'id' => ['title' => 'ID'],
+                'name' => ['title' => 'Название'],
+            ], 
+            'items' => [],
+        ];
 
-        return view('pages.support_team.classes.index', $d);
+        foreach($this->my_class->all() as $my_class) {
+            $list['items'][] = [
+                'id' => [
+                    'value' => $my_class->id,
+                ],
+                'name' => [
+                    'value' => $my_class->name,
+                ]
+            ];
+        }
+
+        // return view('pages.support_team.classes.index', $d);
+        return view('pages.entity.list')
+            ->with('title', 'Группы')
+            ->with('actions', [
+                [
+                    'route_name' => 'subjects.create',
+                    'text' => 'Добавить',
+                ]
+            ])
+            ->with('list', $list);
     }
 
     public function store(ClassCreate $req)

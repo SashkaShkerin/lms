@@ -45,7 +45,7 @@
 
                 <!-- Main -->
                 <li class="nav-item">
-                    <a href="{{ route('dashboard') }}" class="nav-link {{ (Route::is('dashboard')) ? 'active' : '' }}">
+                    <a href="{{ route('events') }}" class="nav-link {{ (Route::is('events')) ? 'active' : '' }}">
                         <i class="icon-home4"></i>
                         <span>Главная</span>
                     </a>
@@ -136,12 +136,12 @@
                 @if(Qs::userIsTeamSA())
                     {{--Manage Users--}}
                     <li class="nav-item">
-                        <a href="{{ route('users.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['users.index', 'users.show', 'users.edit']) ? 'active' : '' }}"><i class="icon-users4"></i> <span> Пользователи</span></a>
+                        <a href="{{ route('users.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['users.index', 'users.show', 'users.edit']) ? 'active' : '' }}"><i class="icon-users4"></i> <span>Пользователи</span></a>
                     </li>
 
                     {{--Manage Classes--}}
                     <li class="nav-item">
-                        <a href="{{ route('classes.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['classes.index','classes.edit']) ? 'active' : '' }}"><i class="icon-windows2"></i> <span> Группы</span></a>
+                        <a href="{{ route('classes.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['classes.index','classes.edit']) ? 'active' : '' }}"><i class="icon-windows2"></i> <span>Группы</span></a>
                     </li>
 
                     <!-- {{--Manage Dorms--}}

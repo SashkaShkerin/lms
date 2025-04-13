@@ -13,21 +13,21 @@
                 <div class="col-md-6">
                     <form class="ajax-update" method="post" action="{{ route('sections.update', $s->id) }}">
                         @csrf @method('PUT')
-                        <div class="form-group row">
+                        <div class="form-group row mb-3">
                             <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
                             <div class="col-lg-9">
                                 <input name="name" value="{{ $s->name }}" required type="text" class="form-control" placeholder="Name of Class">
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-3">
                             <label for="my_class_id" class="col-lg-3 col-form-label font-weight-semibold">Class </label>
                             <div class="col-lg-9">
                                 <input class="form-control" id="my_class_id" disabled="disabled" type="text" value="{{ $s->my_class->name }}">
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-3">
                             <label for="teacher_id" class="col-lg-3 col-form-label font-weight-semibold">Teacher</label>
                             <div class="col-lg-9">
                                 <select data-placeholder="Select Teacher" class="form-control select-search" name="teacher_id" id="teacher_id">

@@ -13,14 +13,14 @@
                 <div class="col-md-6">
                     <form class="ajax-update" data-reload="#page-header" method="post" action="{{ route('dorms.update', $dorm->id) }}">
                         @csrf @method('PUT')
-                        <div class="form-group row">
+                        <div class="form-group row mb-3">
                             <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
                             <div class="col-lg-9">
                                 <input name="name" value="{{ $dorm->name }}" required type="text" class="form-control" placeholder="Name of Dormitory">
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-3">
                             <label class="col-lg-3 col-form-label font-weight-semibold">Description</label>
                             <div class="col-lg-9">
                                 <input name="description" value="{{ $dorm->description }}"  type="text" class="form-control" placeholder="Description of Dormitory">

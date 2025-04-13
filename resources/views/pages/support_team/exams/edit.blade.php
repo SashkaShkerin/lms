@@ -13,14 +13,14 @@
                 <div class="col-md-6">
                     <form method="post" action="{{ route('exams.update', $ex->id) }}">
                         @csrf @method('PUT')
-                        <div class="form-group row">
+                        <div class="form-group row mb-3">
                             <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
                             <div class="col-lg-9">
                                 <input name="name" value="{{ $ex->name }}" required type="text" class="form-control" placeholder="Name of Exam">
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="form-group row mb-3">
                             <label for="term" class="col-lg-3 col-form-label font-weight-semibold">Term</label>
                             <div class="col-lg-9">
                                 <select data-placeholder="Select Teacher" class="form-control select-search" name="term" id="term">

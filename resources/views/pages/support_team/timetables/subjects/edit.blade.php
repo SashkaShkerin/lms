@@ -31,7 +31,7 @@
 
                                         @if($ttr->exam_id)
                                             {{--EXAM DATE--}}
-                                            <div class="form-group row">
+                                            <div class="form-group row mb-3">
                                                 <label class="col-lg-3 col-form-label font-weight-semibold">Exam
                                                     Date <span class="text-danger">*</span></label>
                                                 <div class="col-lg-9">
@@ -44,7 +44,7 @@
 
                                         @else
                                             {{--DAY--}}
-                                            <div class="form-group row">
+                                            <div class="form-group row mb-3">
                                                 <label for="day"
                                                        class="col-lg-3 col-form-label font-weight-semibold">Day
                                                     <span class="text-danger">*</span></label>
@@ -62,7 +62,7 @@
 
                                         @endif
                                         {{--SUBJECT--}}
-                                        <div class="form-group row">
+                                        <div class="form-group row mb-3">
                                             <label for="subject_id"
                                                    class="col-lg-3 col-form-label font-weight-semibold">Занятие
                                                 <span class="text-danger">*</span></label>
@@ -78,7 +78,7 @@
                                         </div>
 
                                         {{--TIME SLOT--}}
-        <div class="form-group row">
+        <div class="form-group row mb-3">
 
                 <label for="ts_id" class="col-lg-3 col-form-label font-weight-semibold">Time Slot <span
                             class="text-danger">*</span></label>

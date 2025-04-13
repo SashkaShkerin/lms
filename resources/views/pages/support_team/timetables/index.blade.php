@@ -31,14 +31,14 @@
                    <div class="col-md-8">
                        <form class="ajax-store" method="post" action="{{ route('ttr.store') }}">
                            @csrf
-                           <div class="form-group row">
+                           <div class="form-group row mb-3">
                                <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
                                <div class="col-lg-9">
                                    <input name="name" value="{{ old('name') }}" required type="text" class="form-control" placeholder="Название">
                                </div>
                            </div>
 
-                           <div class="form-group row">
+                           <div class="form-group row mb-3">
                                <label for="my_class_id" class="col-lg-3 col-form-label font-weight-semibold">Class <span class="text-danger">*</span></label>
                                <div class="col-lg-9">
                                    <select required data-placeholder="Select Class" class="form-control select" name="my_class_id" id="my_class_id">
@@ -49,7 +49,7 @@
                                </div>
                            </div>
 
-                           <div class="form-group row">
+                           <div class="form-group row mb-3">
                                <label for="exam_id" class="col-lg-3 col-form-label font-weight-semibold">Type (Class or Exam)</label>
                                <div class="col-lg-9">
                                    <select class="select form-control" name="exam_id" id="exam_id">

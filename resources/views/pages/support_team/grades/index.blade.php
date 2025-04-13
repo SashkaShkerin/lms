@@ -77,14 +77,14 @@
                         <div class="col-md-6">
                             <form method="post" action="{{ route('grades.store') }}">
                                 @csrf
-                                <div class="form-group row">
+                                <div class="form-group row mb-3">
                                     <label class="col-lg-3 col-form-label font-weight-semibold">Name <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
                                         <input name="name" value="{{ old('name') }}" required type="text" class="form-control text-uppercase" placeholder="E.g. A1">
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <div class="form-group row mb-3">
                                     <label for="class_type_id" class="col-lg-3 col-form-label font-weight-semibold">Grade Type</label>
                                     <div class="col-lg-9">
                                         <select class="form-control select" name="class_type_id" id="class_type_id">
@@ -96,21 +96,21 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <div class="form-group row mb-3">
                                     <label class="col-lg-3 col-form-label font-weight-semibold">Mark From <span class="text-danger">*</span></label>
                                     <div class="col-lg-3">
                                         <input min="0" max="100" name="mark_from" value="{{ old('mark_from') }}" required type="number" class="form-control" placeholder="0">
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <div class="form-group row mb-3">
                                     <label class="col-lg-3 col-form-label font-weight-semibold">Mark To <span class="text-danger">*</span></label>
                                     <div class="col-lg-3">
                                         <input min="0" max="100" name="mark_to" value="{{ old('mark_to') }}" required type="number" class="form-control" placeholder="0">
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                <div class="form-group row mb-3">
                                     <label for="remark" class="col-lg-3 col-form-label font-weight-semibold">Remark</label>
                                     <div class="col-lg-9">
                                         <select class="form-control select" name="remark" id="remark">

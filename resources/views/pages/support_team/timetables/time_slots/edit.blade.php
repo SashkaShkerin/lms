@@ -14,7 +14,7 @@
                 <input name="ttr_id" value="{{ $tms->ttr_id }}" type="hidden">
 
                 {{--TIME BEGIN--}}
-                <div class="form-group row">
+                <div class="form-group row mb-3">
                     <label class="col-lg-3 col-form-label font-weight-semibold">Start Time <span
                                 class="text-danger">*</span></label>
 
@@ -53,7 +53,7 @@
                 </div>
 
                 {{--TIME END--}}
-                <div class="form-group row">
+                <div class="form-group row mb-3">
                     <label class="col-lg-3 col-form-label font-weight-semibold">End Time <span class="text-danger">*</span></label>
 
                     <div class="col-lg-3">
