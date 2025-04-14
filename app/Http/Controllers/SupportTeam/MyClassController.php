@@ -22,12 +22,21 @@ class MyClassController extends Controller
         $this->user = $user;
     }
 
+    // public function index()
+    // {
+    //     $d['my_classes'] = $this->my_class->all();
+    //     $d['class_types'] = $this->my_class->getTypes();
+
+    //     return view('pages.support_team.classes.index', $d);
+    // }
+
     public function index()
     { 
         $list = [
             'columns' => [
                 'id' => ['title' => 'ID'],
                 'name' => ['title' => 'Название'],
+                'actions' => ['title' => 'Действия'],
             ], 
             'items' => [],
         ];
@@ -39,16 +48,22 @@ class MyClassController extends Controller
                 ],
                 'name' => [
                     'value' => $my_class->name,
-                ]
+                ],
+                'actions' => [
+                    'edit' => [
+                        'route' => [
+                            'classes.edit', $my_class->id
+                        ]
+                    ]
+                ],
             ];
         }
 
-        // return view('pages.support_team.classes.index', $d);
         return view('pages.entity.list')
             ->with('title', 'Группы')
             ->with('actions', [
                 [
-                    'route_name' => 'subjects.create',
+                    'route_name' => 'classes.create',
                     'text' => 'Добавить',
                 ]
             ])

@@ -28,17 +28,69 @@ class UserController extends Controller
         $this->my_class = $my_class;
     }
 
-    public function index()
-    {
-        $ut = $this->user->getAllTypes();
-        $ut2 = $ut->where('level', '>', 2);
+    // public function index()
+    // {
+    //     $ut = $this->user->getAllTypes();
+    //     $ut2 = $ut->where('level', '>', 2);
 
-        $d['user_types'] = Qs::userIsAdmin() ? $ut2 : $ut;
-        $d['states'] = $this->loc->getStates();
-        $d['users'] = $this->user->getPTAUsers();
-        $d['nationals'] = $this->loc->getAllNationals();
-        $d['blood_groups'] = $this->user->getBloodGroups();
-        return view('pages.support_team.users.index', $d);
+    //     $d['user_types'] = Qs::userIsAdmin() ? $ut2 : $ut;
+    //     $d['states'] = $this->loc->getStates();
+    //     $d['users'] = $this->user->getPTAUsers();
+    //     $d['nationals'] = $this->loc->getAllNationals();
+    //     $d['blood_groups'] = $this->user->getBloodGroups();
+    //     return view('pages.support_team.users.index', $d);
+    // }
+
+    public function index()
+    { 
+        $list = [
+            'columns' => [
+                'id' => ['title' => 'ID'],
+                'name' => ['title' => 'Имя'],
+                'email' => ['title' => 'Почта'],
+                'username' => ['title' => 'Логин'],
+                'user_type' => ['title' => 'Тип'],
+                'actions' => ['title' => 'Действия'],
+            ], 
+            'items' => [],
+        ];
+
+        foreach($this->user->getAll() as $user) {
+            $list['items'][] = [
+                'id' => [
+                    'value' => $user->id,
+                ],
+                'name' => [
+                    'value' => $user->name,
+                ],
+                'email' => [
+                    'value' => $user->email,
+                ],
+                'username' => [
+                    'value' => $user->username,
+                ],
+                'user_type' => [
+                    'value' => $user->user_type,
+                ],
+                'actions' => [
+                    // 'edit' => [
+                    //     'route' => [
+                    //         'user.edit', $user->id
+                    //     ]
+                    // ]
+                ],
+            ];
+        }
+
+        return view('pages.entity.list')
+            ->with('title', 'Пользователи')
+            ->with('actions', [
+                // [
+                //     'route_name' => 'user.create',
+                //     'text' => 'Добавить',
+                // ]
+            ])
+            ->with('list', $list);
     }
 
     public function edit($id)

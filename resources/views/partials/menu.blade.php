@@ -64,7 +64,7 @@
                     </li>
                     @endif
 
-                {{--Administrative--}}
+                <!-- {{--Administrative--}}
                 @if(Qs::userIsAdministrative())
                     <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['payments.index', 'payments.create', 'payments.invoice', 'payments.receipts', 'payments.edit', 'payments.manage', 'payments.show',]) ? 'nav-item-expanded nav-item-open' : '' }} ">
                         <a href="#" class="nav-link"><i class="icon-office"></i> <span> Administrative</span></a>
@@ -88,7 +88,7 @@
                             @endif
                         </ul>
                     </li>
-                @endif
+                @endif -->
 
                 {{--Manage Students--}}
                 @if(Qs::userIsTeamSAT())
