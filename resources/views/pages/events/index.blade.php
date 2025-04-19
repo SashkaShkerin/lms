@@ -3,7 +3,7 @@
 
 @section('header_rigth')
 
-<a href="{{ route('event') }}" type="submit" class="btn btn-primary">Добавить</a>
+<a href="{{ route('events.create') }}" type="submit" class="btn btn-primary">Добавить</a>
 
 @endsection
 

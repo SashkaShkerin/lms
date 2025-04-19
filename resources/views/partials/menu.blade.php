@@ -45,7 +45,7 @@
 
                 <!-- Main -->
                 <li class="nav-item">
-                    <a href="{{ route('events') }}" class="nav-link {{ (Route::is('events')) ? 'active' : '' }}">
+                    <a href="{{ route('events.index') }}" class="nav-link {{ (Route::is('events.index')) ? 'active' : '' }}">
                         <i class="icon-home4"></i>
                         <span>Главная</span>
                     </a>

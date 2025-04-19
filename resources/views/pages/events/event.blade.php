@@ -1,12 +1,25 @@
 @extends('layouts.master')
 @section('page_title', $event->id ? 'Изменить событие' : 'Добавить событие')
+
+@section('header_rigth')
+   <button type="submit" form="form" class="btn btn-primary">Сохранить</button>
+@endsection
+
 @section('content')
 
     <div class="card">
         <div class="card-body">
             <div class="col-md-8">
-                <form class="ajax-update" method="post" action="{{ route('event.update', $event->id) }}">
-                    @csrf @method('PUT')
+
+                @if($event->id)
+                    <form id="form" class="ajax-update" method="post" action="{{ route('events.update', $event->id) }}">
+                    @method('PUT')
+
+                @else
+                    <form id="form" class="ajax-update" method="post" action="{{ route('events.store') }}">
+                @endif
+
+                    @csrf 
 
                     <div class="form-group row mb-3">
                         <label for="subject_id" class="col-lg-3 col-form-label font-weight-semibold">Занятие</label>
@@ -46,19 +59,11 @@
                             <textarea class="form-control" name="description" rows="5">{{ $event->description }}</textarea>
                         </div>
                     </div>
-
-
-
-                    <div class="text-right">
-                        <button id="ajax-btn" type="submit" class="btn btn-primary">Сохранить <i class="icon-paperplane ml-2"></i></button>
-                    </div>
                 </form>
-
             </div>
 
         </div>
     </div>
 
-    {{--TimeTable Edit Ends--}}
 
 @endsection

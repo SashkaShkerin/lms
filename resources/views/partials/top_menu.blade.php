@@ -21,7 +21,7 @@
 
     <div class="collapse navbar-collapse" id="navbar-mobile">
     <div class="mt-2 mr-5">
-        <a href="{{ route('events') }}" class="d-inline-block">
+        <a href="{{ route('events.index') }}" class="d-inline-block">
         <h4 class="text-bold text-white">{{ Qs::getSystemName() }}</h4>
         </a>
     </div>

@@ -19,16 +19,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/change_password', 'MyAccountController@change_pass')->name('my_account.change_pass');
     });
 
-    /*************** Elents *****************/
-    Route::group(['prefix' => 'events'], function(){
-        Route::get('/', 'EventsController@index')->name('events');
 
-        Route::group(['prefix' => 'event'], function(){
-            Route::get('/{eventId?}', 'EventsController@event')->name('event');
-            Route::post('/{eventId?}', 'EventsController@event_update')->name('event.update');
-        });
-    });
-
+    Route::resource('events', 'EventsController');
 
     /*************** Support Team *****************/
     Route::group(['namespace' => 'SupportTeam',], function(){
