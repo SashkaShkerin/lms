@@ -3,7 +3,7 @@
 @section('page_title', $subject->id ? 'Изменить занятие' : 'Добавить занятие')
 
 @section('content')
-  
+
     <div class="card">
         <div class="card-body">
             <div class="row">
@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="form-group row mb-3">
-                            <label for="my_class_id" class="col-lg-3 col-form-label font-weight-semibold">Группа <span class="text-danger">*</span></label>
+                            <label for="my_class_id" class="col-lg-3 col-form-label font-weight-semibold">Класс <span class="text-danger">*</span></label>
                             <div class="col-lg-9">
                                 <select required data-placeholder="Select Class" class="form-control select" name="my_class_id" id="my_class_id">
                                     @foreach($my_classes as $c)

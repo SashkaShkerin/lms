@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('page_title', 'Главная')
 
-@section('header_rigth')
+@section('header_right')
 
 <a href="{{ route('events.create') }}" type="submit" class="btn btn-primary">Добавить</a>
 

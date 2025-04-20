@@ -197,6 +197,12 @@
         div ? reloadDiv(div) : '';
     });
 
+    $('form#form').on('submit', function(ev){
+        if ($(this).attr('redirect')) {
+            window.location = $(this).attr('redirect');
+        }
+    });
+
     $('.download-receipt').on('click', function(ev){
         ev.preventDefault();
         $.get($(this).attr('href'));

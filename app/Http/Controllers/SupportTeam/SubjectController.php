@@ -26,16 +26,16 @@ class SubjectController extends Controller
     }
 
     public function index()
-    { 
+    {
         $list = [
             'columns' => [
                 'id' => ['title' => 'ID'],
                 'name' => ['title' => 'Название'],
                 'slug' => ['title' => 'Короткое название'],
-                'class' => ['title' => 'Группа'],
+                'class' => ['title' => 'Класс'],
                 'teacher' => ['title' => 'Учитель'],
                 'actions' => ['title' => 'Действия'],
-            ], 
+            ],
             'items' => [],
         ];
 

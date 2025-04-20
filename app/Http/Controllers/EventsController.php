@@ -36,23 +36,14 @@ class EventsController extends Controller
         foreach ($events as $event) {
             $_events[] = [
                 'id' => $event->id,
-                'title' => 'my event',
-                'start' => (new \DateTime($event->start_time))->format('Y-m-d\TH:i:s'),
-                'end' => (new \DateTime($event->end_time))->format('Y-m-d\TH:i:s'),
+                'title' => $event->subject->name,
 
                 'start' => $event->start_time,
                 'end' => $event->end_time,
 
-                'extendedProps' => [
-                    'department' => 'BioChemistry'
-                ],
-                  'description' => 'Lecture'
+                'url' => route('events.show', $event->id)
             ];
         }  
-
-        $_events = array_merge($_events, $_events);
-        
-
 
         return view('pages.events.index')
             ->with('events', $_events);

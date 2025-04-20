@@ -1,0 +1,38 @@
+.exam-table {
+    border: 1px solid #000;
+    border-collapse: collapse;
+}
+
+.sidebar-dark, .navbar-dark{
+    background-color: #283a4b;
+}
+
+
+
+.content-wrapper .content {
+    background-color: #f1f6fb;
+}
+
+
+.fc-view-harness {
+    background-color: #fff;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+
+* {
+    --bs-heading-color: #324154;
+    --bs-nav-link-color: #324154;
+    --bs-nav-link-hover-color: #324154;
+    --bs-nav-link-focus-color: #324154;
+    --bs-table-color-state: #324154;
+}
+
+
+.nav-link.active{
+    font-weight: 500;
+}

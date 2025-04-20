@@ -93,7 +93,7 @@
                 {{--Manage Students--}}
                 @if(Qs::userIsTeamSAT())
                     <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['students.create', 'students.list', 'students.edit', 'students.show', 'students.promotion', 'students.promotion_manage', 'students.graduated']) ? 'nav-item-expanded nav-item-open' : '' }} ">
-                        <a href="#" class="nav-link"><i class="icon-users"></i> <span> Students</span></a>
+                        <a href="#" class="nav-link"><i class="icon-users"></i> <span> Ученики</span></a>
 
                         <ul class="nav nav-group-sub" data-submenu-title="Manage Students">
                             {{--Admit Student--}}
@@ -114,20 +114,20 @@
                                 </ul>
                             </li>
 
-                            @if(Qs::userIsTeamSA())
+{{--                            @if(Qs::userIsTeamSA())--}}
 
-                            {{--Student Promotion--}}
-                            <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['students.promotion', 'students.promotion_manage']) ? 'nav-item-expanded' : '' }}"><a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['students.promotion', 'students.promotion_manage' ]) ? 'active' : '' }}">Student Promotion</a>
-                            <ul class="nav nav-group-sub">
-                                <li class="nav-item"><a href="{{ route('students.promotion') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['students.promotion']) ? 'active' : '' }}">Promote Students</a></li>
-                                <li class="nav-item"><a href="{{ route('students.promotion_manage') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['students.promotion_manage']) ? 'active' : '' }}">Manage Promotions</a></li>
-                            </ul>
+{{--                            --}}{{--Student Promotion--}}
+{{--                            <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['students.promotion', 'students.promotion_manage']) ? 'nav-item-expanded' : '' }}"><a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['students.promotion', 'students.promotion_manage' ]) ? 'active' : '' }}">Student Promotion</a>--}}
+{{--                            <ul class="nav nav-group-sub">--}}
+{{--                                <li class="nav-item"><a href="{{ route('students.promotion') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['students.promotion']) ? 'active' : '' }}">Promote Students</a></li>--}}
+{{--                                <li class="nav-item"><a href="{{ route('students.promotion_manage') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['students.promotion_manage']) ? 'active' : '' }}">Manage Promotions</a></li>--}}
+{{--                            </ul>--}}
 
-                            </li>
+{{--                            </li>--}}
 
-                            {{--Student Graduated--}}
-                            <li class="nav-item"><a href="{{ route('students.graduated') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['students.graduated' ]) ? 'active' : '' }}">Students Graduated</a></li>
-                                @endif
+{{--                            --}}{{--Student Graduated--}}
+{{--                            <li class="nav-item"><a href="{{ route('students.graduated') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['students.graduated' ]) ? 'active' : '' }}">Students Graduated</a></li>--}}
+{{--                                @endif--}}
 
                         </ul>
                     </li>
@@ -141,7 +141,7 @@
 
                     {{--Manage Classes--}}
                     <li class="nav-item">
-                        <a href="{{ route('classes.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['classes.index','classes.edit']) ? 'active' : '' }}"><i class="icon-windows2"></i> <span>Группы</span></a>
+                        <a href="{{ route('classes.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['classes.index','classes.edit']) ? 'active' : '' }}"><i class="icon-windows2"></i> <span>Классы</span></a>
                     </li>
 
                     <!-- {{--Manage Dorms--}}

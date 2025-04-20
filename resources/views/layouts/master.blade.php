@@ -35,7 +35,21 @@
             @endif
             <div id="ajax-alert" style="display: none"></div>
 
-            @yield('content')
+            @hasSection('content')
+                @yield('content')
+            @endif
+
+
+
+            @hasSection('content.card')
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            @yield('content.card')
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
 
 

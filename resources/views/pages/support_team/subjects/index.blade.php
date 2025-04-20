@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('page_title', 'Занятия')
 
-@section('header_rigth')
+@section('header_right')
 
 <a href="{{ route('subjects.create') }}" type="submit" class="btn btn-primary">Добавить</a>
 
@@ -11,13 +11,13 @@
 @section('content')
 
     <div class="card">
-      
+
         <table class="table datatable-button-html5-columns">
             <thead>
             <tr>
                 <th>Название</th>
                 <th>Короткое название</th>
-                <th>Группа</th>
+                <th>Класс</th>
                 <th>Учитель</th>
                 <th>Действия</th>
             </tr>

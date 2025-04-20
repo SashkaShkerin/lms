@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('page_title', $event->id ? 'Изменить событие' : 'Добавить событие')
 
-@section('header_rigth')
+@section('header_right')
    <button type="submit" form="form" class="btn btn-primary">Сохранить</button>
 @endsection
 
@@ -19,7 +19,7 @@
                     <form id="form" class="ajax-update" method="post" action="{{ route('events.store') }}">
                 @endif
 
-                    @csrf 
+                    @csrf
 
                     <div class="form-group row mb-3">
                         <label for="subject_id" class="col-lg-3 col-form-label font-weight-semibold">Занятие</label>
