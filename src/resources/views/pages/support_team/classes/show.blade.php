@@ -2,7 +2,7 @@
 @section('page_title', $class->name)
 
 @section('header_right')
-    <a href="{{ route('classes.edit', $class->id) }}" type="submit" class="btn btn-primary">Редактировать класс</a>
+    <a href="{{ route('classes.edit', $class->id) }}" type="submit" class="btn btn-primary">Редактировать</a>
 @endsection
 
 @include('components.tabs', ['tabs' => [
@@ -15,5 +15,10 @@
             'id' => 'students',
             'title' => 'Ученики',
             'content' => view('pages.support_team.classes.show.tabs.students', ['class' => $class])->render(),
+        ],
+        [
+            'id' => 'events',
+            'title' => 'Занятия',
+            'content' => view('pages.support_team.classes.show.tabs.events', ['class' => $class])->render(),
         ]
 ]])

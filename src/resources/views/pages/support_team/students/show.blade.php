@@ -1,5 +1,12 @@
 @extends('layouts.master')
-@section('page_title', 'Student Profile - '.$sr->user->name)
+@section('page_title',$sr->user->name)
+
+@if(Qs::userIsTeamSA())
+    @section('header_right')
+    <a href="{{ route('students.edit',  Qs::hash($sr->id)) }}" type="submit" class="btn btn-primary">Редактировать</a>
+    @endsection
+@endif
+
 @section('content')
 <div class="row">
     <div class="col-md-3 text-center">
@@ -14,11 +21,7 @@
     <div class="col-md-9">
         <div class="card">
             <div class="card-body">
-                <ul class="nav nav-tabs nav-tabs-highlight">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">{{ $sr->user->name }}</a>
-                    </li>
-                </ul>
+
 
                 <div class="tab-content">
                     {{--Basic Info--}}
@@ -26,7 +29,7 @@
                         <table class="table table-bordered">
                             <tbody>
                             <tr>
-                                <td class="font-weight-bold">Name</td>
+                                <td class="font-weight-bold">Имя</td>
                                 <td>{{ $sr->user->name }}</td>
                             </tr>
                             <tr>
@@ -34,8 +37,8 @@
                                 <td>{{ $sr->adm_no }}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bold">Class</td>
-                                <td>{{ $sr->my_class->name.' '.$sr->section->name }}</td>
+                                <td class="font-weight-bold">Класс</td>
+                                <td>{{ $sr->my_class->name }}</td>
                             </tr>
                             @if($sr->my_parent_id)
                                 <tr>

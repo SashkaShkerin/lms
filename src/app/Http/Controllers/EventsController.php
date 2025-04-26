@@ -55,7 +55,7 @@ class EventsController extends Controller
         $event->start_time = (new \DateTime('now'))->format('Y-m-d\TH:i:s');
         $event->end_time = (new \DateTime('now'))->modify('+1 hour')->format('Y-m-d\TH:i:s');
 
-        return view('pages.events.event')
+        return view('pages.events.edit')
             ->with('event', $event)
             ->with('subjects', $this->subject->all());
     }
@@ -64,7 +64,7 @@ class EventsController extends Controller
     {
         $event = Event::find($id);
 
-        return view('pages.events.event')
+        return view('pages.events.edit')
             ->with('event', $event)
             ->with('subjects', $this->subject->all());
     }
@@ -73,9 +73,8 @@ class EventsController extends Controller
     {
         $event = Event::find($id);
 
-        return view('pages.events.event')
-            ->with('event', $event)
-            ->with('subjects', $this->subject->all());
+        return view('pages.events.show')
+            ->with('event', $event);
     }
 
     public function store(EventCreate $req)
@@ -90,7 +89,7 @@ class EventsController extends Controller
         return Qs::jsonStoreOk();
     }
 
-    public function update(EventUpdate $req)
+    public function update(EventUpdate $req, $id)
     {
         $data = $req->all();
 

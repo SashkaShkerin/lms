@@ -6,6 +6,7 @@ use App\Helpers\Qs;
 use App\Helpers\Mk;
 use App\Http\Requests\Student\StudentRecordCreate;
 use App\Http\Requests\Student\StudentRecordUpdate;
+use App\Models\StudentRecord;
 use App\Repositories\LocationRepo;
 use App\Repositories\MyClassRepo;
 use App\Repositories\StudentRepo;
@@ -38,17 +39,6 @@ class StudentRecordController extends Controller
         $this->user->update($st_id, $data);
         return back()->with('flash_success', __('msg.p_reset'));
     }
-
-    public function create()
-    {
-        $data['my_classes'] = $this->my_class->all();
-        $data['parents'] = $this->user->getUserByType('parent');
-        $data['dorms'] = $this->student->getAllDorms();
-        $data['states'] = $this->loc->getStates();
-        $data['nationals'] = $this->loc->getAllNationals();
-        return view('pages.support_team.students.add', $data);
-    }
-
     public function store(StudentRecordCreate $req)
     {
        $data =  $req->only(Qs::getUserRecord());
@@ -126,6 +116,13 @@ class StudentRecordController extends Controller
         return view('pages.support_team.students.show', $data);
     }
 
+    public function create()
+    {
+        $data['sr'] = new StudentRecord();
+        $data['my_classes'] = $this->my_class->all();
+        $data['parents'] = $this->user->getUserByType('parent');
+        return view('pages.support_team.students.edit', $data);
+    }
     public function edit($sr_id)
     {
         $sr_id = Qs::decodeHash($sr_id);
@@ -134,9 +131,6 @@ class StudentRecordController extends Controller
         $data['sr'] = $this->student->getRecord(['id' => $sr_id])->first();
         $data['my_classes'] = $this->my_class->all();
         $data['parents'] = $this->user->getUserByType('parent');
-        $data['dorms'] = $this->student->getAllDorms();
-        $data['states'] = $this->loc->getStates();
-        $data['nationals'] = $this->loc->getAllNationals();
         return view('pages.support_team.students.edit', $data);
     }
 

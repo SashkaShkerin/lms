@@ -4,10 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+
 
 class Event extends Model
 {
     use HasFactory;
+
+    const STATUS_CONDUCTED = 10;
+    const STATUS_CANCELLED = 20;
 
     protected $fillable = [
         'description',
@@ -16,6 +21,7 @@ class Event extends Model
         'subject_id',
         'start_time',
         'end_time',
+        'status',
     ];
 
     public function teacher()
