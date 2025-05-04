@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SupportTeam;
 
 use App\User;
 use App\Helpers\Qs;
+use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Repositories\LocationRepo;
 use App\Repositories\MyClassRepo;
@@ -29,7 +30,7 @@ class UserController extends Controller
         $this->my_class = $my_class;
     }
 
-     public function inddex()
+     public function indfex()
      {
          $ut = $this->user->getAllTypes();
          $ut2 = $ut->where('level', '>', 2);
@@ -77,11 +78,16 @@ class UserController extends Controller
                     'value' => $user->user_type,
                 ],
                 'actions' => [
-                    // 'edit' => [
-                    //     'route' => [
-                    //         'user.edit', $user->id
-                    //     ]
-                    // ]
+                    'show' => [
+                        'route' => [
+                            'users.show', Qs::hash($user->id)
+                        ]
+                    ],
+                    'edit' => [
+                        'route' => [
+                            'users.edit', Qs::hash($user->id)
+                        ]
+                    ],
                 ],
             ];
         }
@@ -116,9 +122,10 @@ class UserController extends Controller
         return back()->with('flash_success', __('msg.pu_reset'));
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $data['user'] = new User();
+        $data['user']->user_type = $request->query('type');
         $ut = $this->user->getAllTypes();
         $ut2 = $ut->where('level', '>', 2);
 
@@ -167,6 +174,10 @@ class UserController extends Controller
             $d2['user_id'] = $user->id;
             $d2['code'] = $staff_id;
             $this->user->createStaffRecord($d2);
+        } else if ($user->user_type == 'student') {
+            $sr = $req->only(Qs::getStudentData());
+            $sr['user_id'] = $user->id;
+            $this->user->createStudentRecord($sr);
         }
 
         return Qs::jsonStoreOk();
@@ -213,6 +224,11 @@ class UserController extends Controller
             $d2 = $req->only(Qs::getStaffRecord());
             $d2['code'] = $data['username'];
             $this->user->updateStaffRecord(['user_id' => $id], $d2);
+        }
+
+        if ($user_type == 'student') {
+            $d2 = $req->only(Qs::getStudentData());
+            $this->user->updateStudentRecord(['user_id' => $id], $d2);
         }
 
         return Qs::jsonUpdateOk();

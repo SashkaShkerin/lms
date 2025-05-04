@@ -105,15 +105,15 @@ class StudentRecordController extends Controller
     {
         $sr_id = Qs::decodeHash($sr_id);
         if(!$sr_id){return Qs::goWithDanger();}
-
-        $data['sr'] = $this->student->getRecord(['id' => $sr_id])->first();
+        $student = $this->student->getRecord(['id' => $sr_id])->first();
 
         /* Prevent Other Students/Parents from viewing Profile of others */
         if(Auth::user()->id != $data['sr']->user_id && !Qs::userIsTeamSAT() && !Qs::userIsMyChild($data['sr']->user_id, Auth::user()->id)){
             return redirect(route('dashboard'))->with('pop_error', __('msg.denied'));
         }
 
-        return view('pages.support_team.students.show', $data);
+        return redirect(route('users.show', Qs::hash($student->user_id)));
+//        return view('pages.support_team.students.show', $data);
     }
 
     public function create()

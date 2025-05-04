@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Event\Participant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\User;
@@ -42,6 +43,11 @@ class Event extends Model
     public function subject()
     {
         return $this->belongsTo(Subject::class);
+    }
+
+    public function participants()
+    {
+        return $this->hasMany(Participant::class);
     }
 
 }

@@ -1,12 +1,11 @@
 @extends('layouts.master')
 @section('page_title', 'Главная')
 
-@section('header_right')
-
-<a href="{{ route('events.create') }}" type="submit" class="btn btn-primary">Добавить</a>
-
-@endsection
-
+@if(Qs::userIsTeamSA())
+    @section('header_right')
+        <a href="{{ route('events.create') }}" type="submit" class="btn btn-primary">Добавить</a>
+    @endsection
+@endif
 
 @section('content')
 

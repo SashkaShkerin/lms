@@ -2,17 +2,19 @@
 @section('page_title', 'Пользователи')
 
 @section('header_right')
-    <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-            Добавить
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('students.create') }}">Ученика</a></li>
-            <li><a class="dropdown-item" href="{{ route('users.create') }}">Родителя</a></li>
-            <li><a class="dropdown-item" href="{{ route('users.create') }}">Учителя</a></li>
-            <li><a class="dropdown-item" href="{{ route('users.create') }}">Администратора</a></li>
-        </ul>
-    </div>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                Добавить
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{ route('users.create')  }}?type=student">Ученика</a></li>
+                <li><a class="dropdown-item" href="{{ route('users.create') }}?type=parent">Родителя</a></li>
+                <li><a class="dropdown-item" href="{{ route('users.create') }}?type=teacher">Учителя</a></li>
+                @if(Qs::userIsSuperAdmin())
+                    <li><a class="dropdown-item" href="{{ route('users.create') }}?type=admin">Администратора</a></li>
+                @endif
+            </ul>
+        </div>
 @endsection
 
 @include('components.tabs', ['tabs' => [

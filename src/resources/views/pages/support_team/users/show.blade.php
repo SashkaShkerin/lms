@@ -1,11 +1,21 @@
 @extends('layouts.master')
-@section('page_title', 'User Profile - '.$user->name)
+@section('page_title', $user->name)
+
+@if(Qs::userIsTeamSA())
+    @section('header_right')
+        <a href="{{ route('users.edit',  Qs::hash($user->id)) }}" type="submit" class="btn btn-primary">Редактировать</a>
+    @endsection
+@endif
+
+
 @section('content')
     <div class="row">
         <div class="col-md-3 text-center">
             <div class="card">
                 <div class="card-body">
-                    <img style="width: 90%; height:90%" src="{{ $user->photo }}" alt="photo" class="rounded-circle">
+                    <div style="padding-top: 100%; position: relative">
+                        <img style="display: block; top: 0; position: absolute; width: 100%; height: 100%" src="{{ $user->photo }}" alt="photo" class="rounded-circle">
+                    </div>
                     <br>
                     <h3 class="mt-3">{{ $user->name }}</h3>
                 </div>
@@ -14,81 +24,61 @@
         <div class="col-md-9">
             <div class="card">
                 <div class="card-body">
-                    <ul class="nav nav-tabs nav-tabs-highlight">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link active" >{{ $user->name }}</a>
-                        </li>
-                    </ul>
-
                     <div class="tab-content">
                         {{--Basic Info--}}
                         <div class="tab-pane fade show active" id="basic-info">
                             <table class="table table-bordered">
                                 <tbody>
                                 <tr>
-                                    <td class="font-weight-bold">Name</td>
+                                    <td class="font-weight-bold">Тип</td>
+                                    <td>{{ $user->user_type }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="font-weight-bold">Имя</td>
                                     <td>{{ $user->name }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="font-weight-bold">Gender</td>
-                                    <td>{{ $user->gender }}</td>
+                                    <td class="font-weight-bold">Email</td>
+                                    <td>{{$user->email }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="font-weight-bold">Address</td>
-                                    <td>{{ $user->address }}</td>
+                                    <td class="font-weight-bold">Телефон</td>
+                                    <td>{{$user->phone.' '.$user->phone2 }}</td>
                                 </tr>
-                                @if($user->email)
-                                    <tr>
-                                        <td class="font-weight-bold">Email</td>
-                                        <td>{{$user->email }}</td>
-                                    </tr>
-                                @endif
-                                @if($user->username)
-                                    <tr>
-                                        <td class="font-weight-bold">Username</td>
-                                        <td>{{$user->username }}</td>
-                                    </tr>
-                                @endif
-                                @if($user->phone)
-                                    <tr>
-                                        <td class="font-weight-bold">Phone</td>
-                                        <td>{{$user->phone.' '.$user->phone2 }}</td>
-                                    </tr>
-                                @endif
                                 <tr>
-                                    <td class="font-weight-bold">Birthday</td>
+                                    <td class="font-weight-bold">День рожденья</td>
                                     <td>{{$user->dob }}</td>
                                 </tr>
-                                @if($user->bg_id)
-                                    <tr>
-                                        <td class="font-weight-bold">Blood Group</td>
-                                        <td>{{$user->blood_group->name }}</td>
-                                    </tr>
+
+                                @if($user->user_type == 'student')
+                                    @php
+                                    $sr = Qs::findStudentRecord($user->id);
+
+                                    @endphp
+
+                                <tr>
+                                    <td class="font-weight-bold">Класс</td>
+                                    <td>{{ $sr->my_class->name }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold">Родитель</td>
+                                    <td>
+                                        <span><a target="_blank" href="{{ route('users.show', Qs::hash($sr->my_parent_id)) }}">{{ $sr?->my_parent?->name }}</a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-weight-bold">Дата зачисления</td>
+                                    <td>{{ $sr->year_admitted }}</td>
+                                </tr>
                                 @endif
-                                @if($user->nal_id)
-                                    <tr>
-                                        <td class="font-weight-bold">Nationality</td>
-                                        <td>{{$user->nationality->name }}</td>
-                                    </tr>
-                                @endif
-                                @if($user->state_id)
-                                    <tr>
-                                        <td class="font-weight-bold">State</td>
-                                        <td>{{$user->state->name }}</td>
-                                    </tr>
-                                @endif
-                                @if($user->lga_id)
-                                    <tr>
-                                        <td class="font-weight-bold">LGA</td>
-                                        <td>{{$user->lga->name }}</td>
-                                    </tr>
-                                @endif
+
                                 @if($user->user_type == 'parent')
                                     <tr>
-                                        <td class="font-weight-bold">Children/Ward</td>
+                                        <td class="font-weight-bold">Дети</td>
                                         <td>
                                         @foreach(Qs::findMyChildren($user->id) as $sr)
-                                            <span> - <a href="{{ route('students.show', Qs::hash($sr->id)) }}">{{ $sr->user->name.' - '.$sr->my_class->name. ' '.$sr->section->name }}</a></span><br>
+                                            <span> - <a href="{{ route('users.show', Qs::hash($sr->user->id)) }}">{{ $sr->user->name }}</a></span><br>
 
                                             @endforeach
                                         </td>

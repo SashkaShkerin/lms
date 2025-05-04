@@ -1,9 +1,11 @@
 @extends('layouts.master')
 @section('page_title', 'Событие')
 
-@section('header_right')
-    <a href="{{ route('events.edit', $event->id) }}" type="submit" class="btn btn-primary">Редактировать</a>
-@endsection
+@if(Qs::userIsTeamSAT())
+    @section('header_right')
+        <a href="{{ route('events.edit', $event->id) }}" type="submit" class="btn btn-primary">Редактировать</a>
+    @endsection
+@endif
 
 @include('components.tabs', ['tabs' => [
         [

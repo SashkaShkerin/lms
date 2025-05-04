@@ -6,7 +6,8 @@
     </tr>
     <tr>
         <td class="font-weight-bold">Преподаватель</td>
-        <td>{{ $event->teacher?->name }}</td>
+{{--        <td>{{ $event->teacher?->name }}</td>--}}
+        <td>{{ $event->subject?->teacher?->name }}</td>
     </tr>
     <tr>
         <td class="font-weight-bold">Дата начала</td>

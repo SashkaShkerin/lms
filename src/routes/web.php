@@ -9,9 +9,9 @@ Route::get('/terms-of-use', 'HomeController@terms_of_use')->name('terms_of_use')
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/', 'HomeController@dashboard')->name('home');
-    Route::get('/home', 'HomeController@dashboard')->name('home');
-    Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
+    Route::get('/', 'EventsController@index')->name('home');
+    Route::get('/home', 'EventsController@index')->name('home');
+    Route::get('/dashboard', 'EventsController@index')->name('dashboard');
 
     Route::group(['prefix' => 'my_account'], function() {
         Route::get('/', 'MyAccountController@edit_profile')->name('my_account');

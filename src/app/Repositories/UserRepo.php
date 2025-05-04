@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\BloodGroup;
 use App\Models\StaffRecord;
+use App\Models\StudentRecord;
 use App\Models\UserType;
 use App\User;
 
@@ -65,6 +66,17 @@ class UserRepo {
     public function updateStaffRecord($where, $data)
     {
         return StaffRecord::where($where)->update($data);
+    }
+
+    /********** STUDENT RECORD ********/
+    public function createStudentRecord($data)
+    {
+        return StudentRecord::create($data);
+    }
+
+    public function updateStudentRecord($where, $data)
+    {
+        return StudentRecord::where($where)->update($data);
     }
 
     /********** BLOOD GROUPS ********/

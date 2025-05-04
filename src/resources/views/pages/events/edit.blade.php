@@ -31,6 +31,43 @@
 
 
                     <div class="form-group row mb-3">
+                        <label for="subject_id" class="col-lg-3 col-form-label font-weight-semibold">Класс</label>
+                        <div class="col-lg-9">
+                            <select class=" select form-control" name="participant_class" id="subject_id">
+                                <option value="0">Не указано</option>
+
+                                @foreach($classes as $class)
+                                    <option {{ $event->class_id == $class->id ? 'selected' : '' }} value="{{ $class->id }}">{{ $class->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row mb-3">
+                        <label for="subject_id" class="col-lg-3 col-form-label font-weight-semibold">Ученики</label>
+                        <div class="col-lg-9">
+                            <select class=" select form-control" multiple name="participant_students[]" id="subject_id">
+                                @foreach($students as $student)
+                                    <option {{ !!$event->participants->where('type', '=', 20)->where('fileable_id', '=', $student->id)->first() ? 'selected' : '' }} value="{{ $student->id }}">{{ $student->user->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    {{--                        <select class=" select form-control" multiple data-coreui-search="true">--}}
+                    {{--                            <option value="0" selected>Angular</option>--}}
+                    {{--                            <option value="1">Bootstrap</option>--}}
+                    {{--                            <option value="2">React.js</option>--}}
+                    {{--                            <option value="3">Vue.js</option>--}}
+                    {{--                            <optgroup label="backend">--}}
+                    {{--                                <option value="4">Django</option>--}}
+                    {{--                                <option value="5" selected>Laravel</option>--}}
+                    {{--                                <option value="6">Node.js</option>--}}
+                    {{--                            </optgroup>--}}
+                    {{--                        </select>--}}
+
+
+                    <div class="form-group row mb-3">
                         <label  class="col-lg-3 col-form-label font-weight-semibold">Дата начала</label>
                         <div class="col-lg-3">
                             <input type="date" name="start_date" class="form-control" value="{{ (new \DateTime($event->start_time))->format('Y-m-d') }}">
@@ -65,6 +102,8 @@
                             <input multiple type="file" name="files[]" class="form-input-styled" data-fouc>
                         </div>
                     </div>
+
+
                 </form>
 
 

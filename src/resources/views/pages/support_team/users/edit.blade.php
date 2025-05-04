@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('page_title', 'Добавить пользователя')
+@section('page_title',$user->id ? 'Редактировать' : 'Добавить')
 
 @section('header_right')
     <button type="submit" form="form" class="btn btn-primary">Сохранить</button>
@@ -19,9 +19,11 @@
                     <div class="form-group row mb-3">
                         <label class="col-lg-3 col-form-label font-weight-semibold">Тип</label>
                         <div class="col-lg-9">
-                            <select class="form-control select" id="user_type">
+                            <select class="form-control select" required name="user_type">
+                                <option value="none">Не указано</option>
+
                                 @foreach($user_types as $ut)
-                                    <option value="{{ Qs::hash($ut->id) }}">{{ $ut->name }}</option>
+                                    <option {{ $ut->title == $user->user_type ? 'selected' : '' }} value="{{ Qs::hash($ut->id) }}">{{ $ut->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -42,22 +44,27 @@
                     </div>
 
                     <div class="form-group row mb-3">
-                        <label class="col-lg-3 col-form-label font-weight-semibold">Телефон</label>
+                        <label class="col-lg-3 col-form-label font-weight-semibold">Логин</label>
                         <div class="col-lg-9">
-                            <input value="{{ $user->email }}" required type="text" name="phone" class="form-control">
+                            <input value="{{ $user->username }}" required type="text" name="username" class="form-control">
                         </div>
                     </div>
 
-                        @if(in_array($user->user_type, Qs::getStaff()))
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Date of Employment:</label>
-                                    <input autocomplete="off" name="emp_date" value="{{ $user?->staff->first()->emp_date ?? '' }}" type="text" class="form-control date-pick" placeholder="Select Date...">
-
-                                </div>
+                    @if(!$user->id)
+                        <div class="form-group row mb-3">
+                            <label class="col-lg-3 col-form-label font-weight-semibold">Пароль</label>
+                            <div class="col-lg-9">
+                                <input type="password" name="password" class="form-control">
                             </div>
-                        @endif
+                        </div>
+                    @endif
 
+                    <div class="form-group row mb-3">
+                        <label class="col-lg-3 col-form-label font-weight-semibold">Телефон</label>
+                        <div class="col-lg-9">
+                            <input value="{{ $user->phone }}" type="text" name="phone" class="form-control">
+                        </div>
+                    </div>
 
                     <div class="form-group row mb-3">
                         <label class="col-lg-3 col-form-label font-weight-semibold">Фото</label>
@@ -65,5 +72,19 @@
                             <input value="{{ old('photo') }}" accept="image/*" type="file" name="photo" class="form-input-styled" data-fouc>
                         </div>
                     </div>
-            </form>
+
+                    @if(in_array($user->user_type, Qs::getStaff()))
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Date of Employment:</label>
+                                <input autocomplete="off" name="emp_date" value="{{ $user?->staff->first()->emp_date ?? '' }}" type="text" class="form-control date-pick" placeholder="Select Date...">
+
+                            </div>
+                        </div>
+                    @endif
+
+                    @include('pages.support_team.users.edit.'. $user->user_type, [
+                        'user' => $user
+                    ])
+                </form>
 @endsection
