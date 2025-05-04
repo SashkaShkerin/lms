@@ -52,17 +52,17 @@
                 </li>
 
                 {{--Academics--}}
-                @if(Qs::userIsAcademic())
-                    <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['tt.index', 'ttr.edit', 'ttr.show', 'ttr.manage']) ? 'nav-item-expanded nav-item-open' : '' }} ">
-                        <a href="#" class="nav-link"><i class="icon-graduation2"></i> <span> Academics</span></a>
+{{--                @if(Qs::userIsAcademic())--}}
+{{--                    <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['tt.index', 'ttr.edit', 'ttr.show', 'ttr.manage']) ? 'nav-item-expanded nav-item-open' : '' }} ">--}}
+{{--                        <a href="#" class="nav-link"><i class="icon-graduation2"></i> <span> Academics</span></a>--}}
 
-                        <ul class="nav nav-group-sub" data-submenu-title="Manage Academics">
+{{--                        <ul class="nav nav-group-sub" data-submenu-title="Manage Academics">--}}
 
-                        {{--Timetables--}}
-                            <li class="nav-item"><a href="{{ route('tt.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['tt.index']) ? 'active' : '' }}">Timetables</a></li>
-                        </ul>
-                    </li>
-                    @endif
+{{--                        --}}{{--Timetables--}}
+{{--                            <li class="nav-item"><a href="{{ route('tt.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['tt.index']) ? 'active' : '' }}">Timetables</a></li>--}}
+{{--                        </ul>--}}
+{{--                    </li>--}}
+{{--                    @endif--}}
 
                 <!-- {{--Administrative--}}
                 @if(Qs::userIsAdministrative())
@@ -91,32 +91,32 @@
                 @endif -->
 
                 {{--Manage Students--}}
-                @if(Qs::userIsTeamSAT())
-                    <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['students.create', 'students.list', 'students.edit', 'students.show', 'students.promotion', 'students.promotion_manage', 'students.graduated']) ? 'nav-item-expanded nav-item-open' : '' }} ">
-                        <a href="#" class="nav-link"><i class="icon-users"></i> <span> Ученики</span></a>
+{{--                @if(Qs::userIsTeamSAT())--}}
+{{--                    <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['students.create', 'students.list', 'students.edit', 'students.show', 'students.promotion', 'students.promotion_manage', 'students.graduated']) ? 'nav-item-expanded nav-item-open' : '' }} ">--}}
+{{--                        <a href="#" class="nav-link"><i class="icon-users"></i> <span> Ученики</span></a>--}}
 
-                        <ul class="nav nav-group-sub" data-submenu-title="Manage Students">
-                            {{--Admit Student--}}
-                            @if(Qs::userIsTeamSA())
-                                <li class="nav-item">
-                                    <a href="{{ route('students.create') }}"
-                                       class="nav-link {{ (Route::is('students.create')) ? 'active' : '' }}">Admit Student</a>
-                                </li>
-                            @endif
+{{--                        <ul class="nav nav-group-sub" data-submenu-title="Manage Students">--}}
+{{--                            --}}{{--Admit Student--}}
+{{--                            @if(Qs::userIsTeamSA())--}}
+{{--                                <li class="nav-item">--}}
+{{--                                    <a href="{{ route('students.create') }}"--}}
+{{--                                       class="nav-link {{ (Route::is('students.create')) ? 'active' : '' }}">Admit Student</a>--}}
+{{--                                </li>--}}
+{{--                            @endif--}}
 
-                            {{--Student Information--}}
-                            <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['students.list', 'students.edit', 'students.show']) ? 'nav-item-expanded' : '' }}">
-                                <a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['students.list', 'students.edit', 'students.show']) ? 'active' : '' }}">Student Information</a>
-                                <ul class="nav nav-group-sub">
-                                    @foreach(App\Models\MyClass::orderBy('name')->get() as $c)
-                                        <li class="nav-item"><a href="{{ route('students.list', $c->id) }}" class="nav-link ">{{ $c->name }}</a></li>
-                                    @endforeach
-                                </ul>
-                            </li>
+{{--                            --}}{{--Student Information--}}
+{{--                            <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['students.list', 'students.edit', 'students.show']) ? 'nav-item-expanded' : '' }}">--}}
+{{--                                <a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['students.list', 'students.edit', 'students.show']) ? 'active' : '' }}">Student Information</a>--}}
+{{--                                <ul class="nav nav-group-sub">--}}
+{{--                                    @foreach(App\Models\MyClass::orderBy('name')->get() as $c)--}}
+{{--                                        <li class="nav-item"><a href="{{ route('students.list', $c->id) }}" class="nav-link ">{{ $c->name }}</a></li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+{{--                            </li>--}}
 
 {{--                            @if(Qs::userIsTeamSA())--}}
 
-{{--                            --}}{{--Student Promotion--}}
+{{--                            --}}{{----}}{{--Student Promotion--}}
 {{--                            <li class="nav-item nav-item-submenu {{ in_array(Route::currentRouteName(), ['students.promotion', 'students.promotion_manage']) ? 'nav-item-expanded' : '' }}"><a href="#" class="nav-link {{ in_array(Route::currentRouteName(), ['students.promotion', 'students.promotion_manage' ]) ? 'active' : '' }}">Student Promotion</a>--}}
 {{--                            <ul class="nav nav-group-sub">--}}
 {{--                                <li class="nav-item"><a href="{{ route('students.promotion') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['students.promotion']) ? 'active' : '' }}">Promote Students</a></li>--}}
@@ -125,13 +125,13 @@
 
 {{--                            </li>--}}
 
-{{--                            --}}{{--Student Graduated--}}
+{{--                            --}}{{----}}{{--Student Graduated--}}
 {{--                            <li class="nav-item"><a href="{{ route('students.graduated') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['students.graduated' ]) ? 'active' : '' }}">Students Graduated</a></li>--}}
 {{--                                @endif--}}
 
-                        </ul>
-                    </li>
-                @endif
+{{--                        </ul>--}}
+{{--                    </li>--}}
+{{--                @endif--}}
 
                 @if(Qs::userIsTeamSA())
                     {{--Manage Users--}}

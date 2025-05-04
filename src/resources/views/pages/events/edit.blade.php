@@ -5,18 +5,15 @@
    <button type="submit" form="form" class="btn btn-primary">Сохранить</button>
 @endsection
 
-@section('content')
+@section('content.card')
 
-    <div class="card">
-        <div class="card-body">
-            <div class="col-md-8">
 
                 @if($event->id)
-                    <form id="form" class="ajax-update" method="post" action="{{ route('events.update', $event->id) }}">
+                    <form id="form" class="ajax-update" enctype="multipart/form-data" method="post" action="{{ route('events.update', $event->id) }}">
                     @method('PUT')
 
                 @else
-                    <form id="form" class="ajax-update" method="post" action="{{ route('events.store') }}">
+                    <form id="form" class="ajax-update" enctype="multipart/form-data" method="post" action="{{ route('events.store') }}">
                 @endif
 
                     @csrf
@@ -59,11 +56,16 @@
                             <textarea class="form-control" name="description" rows="5">{{ $event->description }}</textarea>
                         </div>
                     </div>
-                </form>
-            </div>
 
-        </div>
-    </div>
+
+
+                    <div class="form-group row mb-3">
+                        <label class="col-lg-3 col-form-label font-weight-semibold">Файлы</label>
+                        <div class="col-lg-9">
+                            <input multiple type="file" name="files[]" class="form-input-styled" data-fouc>
+                        </div>
+                    </div>
+                </form>
 
 
 @endsection

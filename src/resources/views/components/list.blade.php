@@ -21,16 +21,16 @@
                                 <div class="dropdown-menu dropdown-menu-left">
                                     @foreach($item as $action_code => $action_item)
 
-                                        @if($action_code == 'edit')
-                                            @if(Qs::userIsTeamSA())
-                                                <a href="{{ route(...$action_item['route']) }}"
-                                                   class="dropdown-item"><i class="icon-pencil"></i> Редактировать</a>
-                                            @endif
-
-                                        @elseif($action_code == 'show')
+                                        @if($action_code == 'show')
                                             @if(Qs::userIsTeamSA())
                                                 <a href="{{ route(...$action_item['route']) }}"
                                                    class="dropdown-item"><i class="icon-eye"></i> Посмотреть</a>
+                                            @endif
+
+                                        @elseif($action_code == 'edit')
+                                            @if(Qs::userIsTeamSA())
+                                                <a href="{{ route(...$action_item['route']) }}"
+                                                   class="dropdown-item"><i class="icon-pencil"></i> Редактировать</a>
                                             @endif
 
                                         @elseif(false)
@@ -47,10 +47,8 @@
                     </td>
                 @else
                     <td>{{ $item['value'] }} </td>
-                    @endif
-                    </td>
-
-                    @endforeach
+                @endif
+            @endforeach
         </tr>
     @endforeach
     </tbody>

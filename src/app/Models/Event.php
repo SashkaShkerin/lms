@@ -24,6 +24,11 @@ class Event extends Model
         'status',
     ];
 
+    public function files()
+    {
+        return $this->morphMany(File::class, 'fileable');
+    }
+
     public function teacher()
     {
         return $this->belongsTo(User::class, 'teacher_id');

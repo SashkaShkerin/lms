@@ -20,5 +20,16 @@
         <td class="font-weight-bold">Описание</td>
         <td>{{ $event->description }}</td>
     </tr>
+
+    <tr>
+        <td class="font-weight-bold">Файлы</td>
+        <td>
+            @foreach ($event->files as $file)
+                <a href="{{ asset('storage/' . $file->file_path) }}" target="_blank">
+                    {{ $file->original_name }}
+                </a><br>
+            @endforeach
+        </td>
+    </tr>
     </tbody>
 </table>

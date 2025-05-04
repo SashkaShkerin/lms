@@ -14,6 +14,8 @@ use App\Models\Event;
 use App\Http\Requests\Events\EventCreate;
 use App\Http\Requests\Events\EventUpdate;
 
+use Illuminate\Support\Facades\Storage;
+
 
 class EventsController extends Controller
 {
@@ -84,7 +86,17 @@ class EventsController extends Controller
         $data['start_time'] = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $data['start_date'] .' ' . $data['start_time']);
         $data['end_time'] = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $data['end_date'] .' ' . $data['end_time']);
 
-        $this->event->create($data);
+
+
+        $event = $this->event->create($data);
+
+        foreach ($req->file('files') as $uploadedFile) {
+            $path = $uploadedFile->store('uploads/events', 'public');
+            $event->files()->create([
+                'file_path' => $path,
+                'original_name' => $uploadedFile->getClientOriginalName(),
+            ]);
+        }
 
         return Qs::jsonStoreOk();
     }
@@ -95,8 +107,23 @@ class EventsController extends Controller
 
         $data['start_time'] = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $data['start_date'] .' ' . $data['start_time']);
         $data['end_time'] = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $data['end_date'] .' ' . $data['end_time']);
-
         $this->event->update($id, $data);
+        $event =$this->event->find($id);
+
+        foreach ((array)$event->files as $file) {
+            if (!$file) continue;
+            Storage::delete('public/events' . $file->file_path);
+            $file->delete();
+        }
+
+        foreach ($req->file('files') as $uploadedFile) {
+            $path = $uploadedFile->store('uploads/events', 'public');
+
+            $event->files()->create([
+                'file_path' => $path,
+                'original_name' => $uploadedFile->getClientOriginalName(),
+            ]);
+        }
 
         return Qs::jsonUpdateOk();
     }

@@ -7,7 +7,7 @@
 
 @section('content.card')
     @if($sr->id)
-        <form id="form" class="ajax-update" method="post" action="{{ route('students.update', $sr->id) }}">
+        <form id="form" class="ajax-update" method="post" action="{{ route('students.update', Qs::hash($sr->id)) }}">
             @method('PUT')
 
     @else

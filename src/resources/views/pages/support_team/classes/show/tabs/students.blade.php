@@ -2,7 +2,7 @@
 
     $list = [
         'columns' => [
-            'id' => ['title' => 'ID'],
+//            'avatar' => ['title' => 'Фото'],
             'name' => ['title' => 'Имя'],
             'email' => ['title' => 'Почта'],
             'actions' => ['title' => 'Действия'],
@@ -14,9 +14,9 @@
             $user = $student_record->user;
 
             $list['items'][] = [
-                'id' => [
-                    'value' => $user->id,
-                ],
+//                'avatar' => [
+//                    'value' => '<img class="rounded-circle" style="height: 40px; width: 40px;" src="'. $user->photo .'" alt="photo">',
+//                ],
                 'name' => [
                     'value' => $user->name,
                 ],
@@ -24,14 +24,14 @@
                     'value' => $user->email,
                 ],
                 'actions' => [
-                    'edit' => [
-                        'route' => [
-                            'students.edit', Qs::hash($user->id)
-                        ]
-                    ],
                     'show' => [
                         'route' => [
-                            'students.show', Qs::hash($user->id)
+                            'students.show', Qs::hash($student_record->id)
+                        ]
+                    ],
+                    'edit' => [
+                        'route' => [
+                            'students.edit', Qs::hash($student_record->id)
                         ]
                     ],
                 ],

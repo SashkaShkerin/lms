@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\SupportTeam;
 
+use App\User;
 use App\Helpers\Qs;
 use App\Http\Requests\UserRequest;
 use App\Repositories\LocationRepo;
@@ -28,18 +29,18 @@ class UserController extends Controller
         $this->my_class = $my_class;
     }
 
-    // public function index()
-    // {
-    //     $ut = $this->user->getAllTypes();
-    //     $ut2 = $ut->where('level', '>', 2);
+     public function inddex()
+     {
+         $ut = $this->user->getAllTypes();
+         $ut2 = $ut->where('level', '>', 2);
 
-    //     $d['user_types'] = Qs::userIsAdmin() ? $ut2 : $ut;
-    //     $d['states'] = $this->loc->getStates();
-    //     $d['users'] = $this->user->getPTAUsers();
-    //     $d['nationals'] = $this->loc->getAllNationals();
-    //     $d['blood_groups'] = $this->user->getBloodGroups();
-    //     return view('pages.support_team.users.index', $d);
-    // }
+         $d['user_types'] = Qs::userIsAdmin() ? $ut2 : $ut;
+         $d['states'] = $this->loc->getStates();
+         $d['users'] = $this->user->getPTAUsers();
+         $d['nationals'] = $this->loc->getAllNationals();
+         $d['blood_groups'] = $this->user->getBloodGroups();
+         return view('pages.support_team.users._index', $d);
+     }
 
     public function index()
     { 
@@ -56,7 +57,10 @@ class UserController extends Controller
         ];
 
         foreach($this->user->getAll() as $user) {
-            $list['items'][] = [
+            $_type = $user->user_type;
+            $_type = $_type == 'super_admin' ? 'admin' : $_type;
+
+            $list['items'][$_type][] = [
                 'id' => [
                     'value' => $user->id,
                 ],
@@ -82,14 +86,7 @@ class UserController extends Controller
             ];
         }
 
-        return view('pages.entity.list')
-            ->with('title', 'Пользователи')
-            ->with('actions', [
-                // [
-                //     'route_name' => 'user.create',
-                //     'text' => 'Добавить',
-                // ]
-            ])
+        return view('pages.support_team.users.index')
             ->with('list', $list);
     }
 
@@ -97,10 +94,13 @@ class UserController extends Controller
     {
         $id = Qs::decodeHash($id);
         $d['user'] = $this->user->find($id);
-        $d['states'] = $this->loc->getStates();
-        $d['users'] = $this->user->getPTAUsers();
-        $d['blood_groups'] = $this->user->getBloodGroups();
-        $d['nationals'] = $this->loc->getAllNationals();
+
+        $ut = $this->user->getAllTypes();
+        $ut2 = $ut->where('level', '>', 2);
+
+        $d['user_types'] = Qs::userIsAdmin() ? $ut2 : $ut;
+
+
         return view('pages.support_team.users.edit', $d);
     }
 
@@ -114,6 +114,17 @@ class UserController extends Controller
         $data['password'] = Hash::make('user');
         $this->user->update($id, $data);
         return back()->with('flash_success', __('msg.pu_reset'));
+    }
+
+    public function create()
+    {
+        $data['user'] = new User();
+        $ut = $this->user->getAllTypes();
+        $ut2 = $ut->where('level', '>', 2);
+
+        $data['user_types'] = Qs::userIsAdmin() ? $ut2 : $ut;
+
+        return view('pages.support_team.users.edit', $data);
     }
 
     public function store(UserRequest $req)
