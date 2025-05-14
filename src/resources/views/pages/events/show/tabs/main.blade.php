@@ -1,13 +1,18 @@
 <table class="table table-bordered">
     <tbody>
     <tr>
-        <td class="font-weight-bold">Занятие</td>
+        <td class="font-weight-bold">Предмет</td>
         <td>{{ $event->subject?->name }}</td>
     </tr>
     <tr>
         <td class="font-weight-bold">Преподаватель</td>
 {{--        <td>{{ $event->teacher?->name }}</td>--}}
-        <td>{{ $event->subject?->teacher?->name }}</td>
+        <td>{{ $event->teacher?->name }}</td>
+    </tr>
+    <tr>
+        <td class="font-weight-bold">Группа</td>
+        {{--        <td>{{ $event->teacher?->name }}</td>--}}
+        <td>{{ $event->class?->name }}</td>
     </tr>
     <tr>
         <td class="font-weight-bold">Дата начала</td>

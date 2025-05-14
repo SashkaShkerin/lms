@@ -44,7 +44,7 @@
                                 <td>{{$sr->user->dob }}</td>
                             </tr>
                             <tr>
-                                <td class="font-weight-bold">Класс</td>
+                                <td class="font-weight-bold">Группа</td>
                                 <td>{{ $sr->my_class->name }}</td>
                             </tr>
                             <tr>

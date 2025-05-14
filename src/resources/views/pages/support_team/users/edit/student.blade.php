@@ -10,7 +10,7 @@
 
 
 <div class="form-group row mb-3">
-    <label class="col-lg-3 col-form-label font-weight-semibold">Класс</label>
+    <label class="col-lg-3 col-form-label font-weight-semibold">Группа</label>
     <div class="col-lg-9">
         <select onchange="getClassSections(this.value)" name="my_class_id" required id="my_class_id" class="form-control select-search" data-placeholder="Выбрать">
             <option value=""></option>
@@ -27,7 +27,7 @@
         <select data-placeholder="Выбрать"  name="my_parent_id" id="my_parent_id" class="select-search form-control">
             <option  value=""></option>
             @foreach($parents as $p)
-                <option {{ ($sr?->parent_id == $p->id) ? 'selected' : '' }} value="{{ $p->id }}">{{ $p->name }}</option>
+                <option {{ ($sr?->my_parent_id == $p->id) ? 'selected' : '' }} value="{{ $p->id }}">{{ $p->name }}</option>
             @endforeach
         </select>
     </div>

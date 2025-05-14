@@ -32,8 +32,6 @@ class SubjectController extends Controller
                 'id' => ['title' => 'ID'],
                 'name' => ['title' => 'Название'],
                 'slug' => ['title' => 'Короткое название'],
-                'class' => ['title' => 'Класс'],
-                'teacher' => ['title' => 'Учитель'],
                 'actions' => ['title' => 'Действия'],
             ],
             'items' => [],
@@ -50,12 +48,6 @@ class SubjectController extends Controller
                 'slug' => [
                     'value' => $subject->slug,
                 ],
-                'class' => [
-                    'value' => $subject->my_class->name,
-                ],
-                'teacher' => [
-                    'value' => $subject->teacher->name,
-                ],
                 'actions' => [
                     'edit' => [
                         'route' => [
@@ -67,7 +59,7 @@ class SubjectController extends Controller
         }
 
         return view('pages.entity.list')
-            ->with('title', 'Занятия')
+            ->with('title', 'Предметы')
             ->with('actions', [
                 [
                     'route_name' => 'subjects.create',
@@ -80,7 +72,9 @@ class SubjectController extends Controller
     public function store(SubjectCreate $req)
     {
         $data = $req->all();
-        $this->my_class->createSubject($data);
+        $data['my_class_id'] = 0;
+        $data['teacher_id'] = 0;
+        $this->subject->create($data);
 
         return Qs::jsonStoreOk();
     }
@@ -105,7 +99,7 @@ class SubjectController extends Controller
     public function update(SubjectUpdate $req, $id)
     {
         $data = $req->all();
-        $this->my_class->updateSubject($id, $data);
+        $this->subject->update($id, $data);
 
         return Qs::jsonUpdateOk();
     }

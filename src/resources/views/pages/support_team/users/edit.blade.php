@@ -19,11 +19,13 @@
                     <div class="form-group row mb-3">
                         <label class="col-lg-3 col-form-label font-weight-semibold">Тип</label>
                         <div class="col-lg-9">
-                            <select class="form-control select" required name="user_type">
+                            <select class="form-control select"  {{ $user->id ? 'disabled' : '' }} onchange="(() => {
+                                window.location =window.location.pathname + '?type=' + this.value
+                            })()" required name="user_type">
                                 <option value="none">Не указано</option>
 
                                 @foreach($user_types as $ut)
-                                    <option {{ $ut->title == $user->user_type ? 'selected' : '' }} value="{{ Qs::hash($ut->id) }}">{{ $ut->name }}</option>
+                                    <option {{ $ut->title == $user->user_type ? 'selected' : '' }} value="{{ $ut->title }}">{{ $ut->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -74,11 +76,10 @@
                     </div>
 
                     @if(in_array($user->user_type, Qs::getStaff()))
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Date of Employment:</label>
+                        <div class="form-group row mb-3">
+                            <label class="col-lg-3 col-form-label font-weight-semibold">Дата устройства</label>
+                            <div class="col-lg-9">
                                 <input autocomplete="off" name="emp_date" value="{{ $user?->staff->first()->emp_date ?? '' }}" type="text" class="form-control date-pick" placeholder="Select Date...">
-
                             </div>
                         </div>
                     @endif

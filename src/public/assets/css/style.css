@@ -1,10 +1,19 @@
+:root {
+    --color-primary: #283a4b;
+    --bs-heading-color: #324154;
+    --bs-nav-link-color: #324154;
+    --bs-nav-link-hover-color: #324154;
+    --bs-nav-link-focus-color: #324154;
+    --bs-table-color-state: #324154;
+}
+
 .exam-table {
     border: 1px solid #000;
     border-collapse: collapse;
 }
 
 .sidebar-dark, .navbar-dark{
-    background-color: #283a4b;
+    background-color: var(--color-primary);
 }
 
 
@@ -21,15 +30,6 @@
 
 a {
     text-decoration: none;
-}
-
-
-* {
-    --bs-heading-color: #324154;
-    --bs-nav-link-color: #324154;
-    --bs-nav-link-hover-color: #324154;
-    --bs-nav-link-focus-color: #324154;
-    --bs-table-color-state: #324154;
 }
 
 

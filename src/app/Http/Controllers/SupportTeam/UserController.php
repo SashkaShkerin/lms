@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\SupportTeam;
 
+use App\Models\StudentRecord;
 use App\User;
 use App\Helpers\Qs;
 use Illuminate\Http\Request;
@@ -136,7 +137,7 @@ class UserController extends Controller
 
     public function store(UserRequest $req)
     {
-        $user_type = $this->user->findType($req->user_type)->title;
+        $user_type = $req->user_type;
 
         $data = $req->except(Qs::getStaffRecord());
         $data['name'] = ucwords($req->name);
@@ -148,7 +149,7 @@ class UserController extends Controller
         $user_is_teamSA = in_array($user_type, Qs::getTeamSA());
 
         $staff_id = Qs::getAppCode().'/STAFF/'.date('Y/m', strtotime($req->emp_date)).'/'.mt_rand(1000, 9999);
-        $data['username'] = $uname = ($user_is_teamSA) ? $req->username : $staff_id;
+        $data['username'] = $req->username;
 
         $pass = $req->password ?: $user_type;
         $data['password'] = Hash::make($pass);

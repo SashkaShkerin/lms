@@ -17,6 +17,7 @@ use App\Models\Event;
 use App\Http\Requests\Events\EventCreate;
 use App\Http\Requests\Events\EventUpdate;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -67,6 +68,8 @@ class EventsController extends Controller
 
                 'start' => $event->start_time,
                 'end' => $event->end_time,
+                'description' => 'Lecture',
+
 
                 'url' => route('events.show', $event->id)
             ];
@@ -84,6 +87,7 @@ class EventsController extends Controller
 
         return view('pages.events.edit')
             ->with('event', $event)
+            ->with('teachers', $this->user->getUserByType('teacher'))
             ->with('subjects', $this->subject->all())
             ->with('students', $this->student->getAll()->get())
             ->with('classes', $this->class->all());
@@ -95,6 +99,7 @@ class EventsController extends Controller
 
         return view('pages.events.edit')
             ->with('event', $event)
+            ->with('teachers', $this->user->getUserByType('teacher'))
             ->with('subjects', $this->subject->all())
             ->with('students', $this->student->getAll()->get())
             ->with('classes', $this->class->all());
@@ -129,7 +134,7 @@ class EventsController extends Controller
             ]);
         }
 
-        if ($students = (array)$data['participant_students']) {
+        if ($students = (array)Arr::get($data, 'participant_students')) {
             foreach ($students as $student) {
                 Event\Participant::create([
                     'event_id' => $event->id,
@@ -160,7 +165,7 @@ class EventsController extends Controller
         $data['start_time'] = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $data['start_date'] .' ' . $data['start_time']);
         $data['end_time'] = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $data['end_date'] .' ' . $data['end_time']);
         $this->event->update($id, $data);
-        $event =$this->event->find($id);
+        $event = $this->event->find($id);
 
         foreach ($event->participants()->get() as $participant) {
             $participant->delete();
@@ -177,7 +182,7 @@ class EventsController extends Controller
             ]);
         }
 
-        if ($students = (array)$data['participant_students']) {
+        if ($students = (array)Arr::get($data, 'participant_students')) {
             foreach ($students as $student) {
                 Event\Participant::create([
                     'event_id' => $event->id,
@@ -189,19 +194,21 @@ class EventsController extends Controller
             }
         }
 
-        foreach ((array)$event->files as $file) {
-            if (!$file) continue;
-            Storage::delete('public/events' . $file->file_path);
-            $file->delete();
-        }
+        if((array)$req->file('files')) {
+            foreach ((array)$event->files->all() as $file) {
+                if (!$file) continue;
+                Storage::delete('public/events' . $file->file_path);
+                $file->delete();
+            }
 
-        foreach ((array)$req->file('files') as $uploadedFile) {
-            $path = $uploadedFile->store('uploads/events', 'public');
+            foreach ((array)$req->file('files') as $uploadedFile) {
+                $path = $uploadedFile->store('uploads/events', 'public');
 
-            $event->files()->create([
-                'file_path' => $path,
-                'original_name' => $uploadedFile->getClientOriginalName(),
-            ]);
+                $event->files()->create([
+                    'file_path' => $path,
+                    'original_name' => $uploadedFile->getClientOriginalName(),
+                ]);
+            }
         }
 
         return Qs::jsonUpdateOk();

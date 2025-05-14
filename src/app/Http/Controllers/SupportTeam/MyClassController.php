@@ -58,7 +58,7 @@ class MyClassController extends Controller
         }
 
         return view('pages.entity.list')
-            ->with('title', 'Классы')
+            ->with('title', 'Группы')
             ->with('actions', [
                 [
                     'route_name' => 'classes.create',

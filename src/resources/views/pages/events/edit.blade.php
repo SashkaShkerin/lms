@@ -19,9 +19,11 @@
                     @csrf
 
                     <div class="form-group row mb-3">
-                        <label for="subject_id" class="col-lg-3 col-form-label font-weight-semibold">Занятие</label>
+                        <label for="subject_id" class="col-lg-3 col-form-label font-weight-semibold">Предмет</label>
                         <div class="col-lg-9">
                             <select class=" select form-control" name="subject_id" id="subject_id">
+                                <option value="0">Не указано</option>
+
                                 @foreach($subjects as $subject)
                                     <option {{ $event->subject_id == $subject->id ? 'selected' : '' }} value="{{ $subject->id }}">{{ $subject->name }}</option>
                                 @endforeach
@@ -29,11 +31,23 @@
                         </div>
                     </div>
 
+                    <div class="form-group row mb-3">
+                        <label for="teacher_id" class="col-lg-3 col-form-label font-weight-semibold">Преподаватель</label>
+                        <div class="col-lg-9">
+                            <select class=" select form-control" name="teacher_id" id="teacher_id">
+                                <option value="0">Не указано</option>
+
+                                @foreach($teachers as $teacher)
+                                    <option {{ $event->teacher_id == $teacher->id ? 'selected' : '' }} value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="form-group row mb-3">
-                        <label for="subject_id" class="col-lg-3 col-form-label font-weight-semibold">Класс</label>
+                        <label for="participant_class" class="col-lg-3 col-form-label font-weight-semibold">Группа</label>
                         <div class="col-lg-9">
-                            <select class=" select form-control" name="participant_class" id="subject_id">
+                            <select class=" select form-control" name="participant_class" id="participant_class">
                                 <option value="0">Не указано</option>
 
                                 @foreach($classes as $class)

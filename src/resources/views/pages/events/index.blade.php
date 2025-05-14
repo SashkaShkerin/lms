@@ -12,6 +12,27 @@
 
 
 <div id='calendar'></div>
+
+<style>
+    .fc-event, .fc-event-dot {
+        background: var(--color-primary);
+        border: 1px solid  var(--color-primary);
+        color: #fff!important;
+    }
+
+    .fc-event:hover {
+        background: var(--color-primary);
+        border: 1px solid  var(--color-primary);
+        color: #fff!important;
+        opacity: .8;
+    }
+
+    .fc-col-header-cell-cushion{
+        color:var(--bs-heading-color) !important;
+    }
+
+    .fc-daygrid-event-dot {display: none}
+</style>
     <script>
 
       document.addEventListener('DOMContentLoaded', function() {

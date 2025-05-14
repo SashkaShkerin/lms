@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SettingUpdate;
 use App\Repositories\MyClassRepo;
 use App\Repositories\SettingRepo;
+use Illuminate\Support\Arr;
 
 class SettingController extends Controller
 {
@@ -31,7 +32,7 @@ class SettingController extends Controller
     public function update(SettingUpdate $req)
     {
         $sets = $req->except('_token', '_method', 'logo');
-        $sets['lock_exam'] = $sets['lock_exam'] == 1 ? 1 : 0;
+        $sets['lock_exam'] = Arr::get($sets, 'lock_exam') == 1 ? 1 : 0;
         $keys = array_keys($sets);
         $values = array_values($sets);
         for($i=0; $i<count($sets); $i++){

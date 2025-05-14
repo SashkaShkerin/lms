@@ -108,7 +108,7 @@ class StudentRecordController extends Controller
         $student = $this->student->getRecord(['id' => $sr_id])->first();
 
         /* Prevent Other Students/Parents from viewing Profile of others */
-        if(Auth::user()->id != $data['sr']->user_id && !Qs::userIsTeamSAT() && !Qs::userIsMyChild($data['sr']->user_id, Auth::user()->id)){
+        if(Auth::user()->id != $student->user_id && !Qs::userIsTeamSAT() && !Qs::userIsMyChild($student->user_id, Auth::user()->id)){
             return redirect(route('dashboard'))->with('pop_error', __('msg.denied'));
         }
 

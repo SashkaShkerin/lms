@@ -16,9 +16,9 @@
             'title' => 'Ученики',
             'content' => view('pages.support_team.classes.show.tabs.students', ['class' => $class])->render(),
         ],
-        [
-            'id' => 'events',
-            'title' => 'Занятия',
-            'content' => view('pages.support_team.classes.show.tabs.events', ['class' => $class])->render(),
-        ]
+//        [
+//            'id' => 'events',
+//            'title' => 'Предметы',
+//            'content' => view('pages.support_team.classes.show.tabs.events', ['class' => $class])->render(),
+//        ]
 ]])

@@ -1,10 +1,10 @@
 @extends('layouts.master')
-@section('page_title', 'Занятия')
+@section('page_title', 'Предметы')
 @section('content')
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h6 class="card-title">Занятия</h6>
+            <h6 class="card-title">Предметы</h6>
             {!! Qs::getPanelOptions() !!}
         </div>
 
@@ -12,7 +12,7 @@
             <ul class="nav nav-tabs nav-tabs-highlight">
                 <li class="nav-item"><a href="#new-subject" class="nav-link active" data-toggle="tab">Add Subject</a></li>
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Занятия</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Предметы</a>
                     <div class="dropdown-menu dropdown-menu-right">
                         @foreach($my_classes as $c)
                             <a href="#c{{ $c->id }}" class="dropdown-item" data-toggle="tab">{{ $c->name }}</a>

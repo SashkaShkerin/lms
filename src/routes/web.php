@@ -21,6 +21,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::resource('events', 'EventsController');
+    Route::group([
+        'prefix' => 'events',
+        'middleware' => 'teamSAT'
+    ], function() {
+        Route::resource('participant', 'Event\ParticipantController');
+    });
 
     /*************** Support Team *****************/
     Route::group(['namespace' => 'SupportTeam',], function(){

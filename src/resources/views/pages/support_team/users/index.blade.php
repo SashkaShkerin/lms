@@ -9,7 +9,7 @@
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{ route('users.create')  }}?type=student">Ученика</a></li>
                 <li><a class="dropdown-item" href="{{ route('users.create') }}?type=parent">Родителя</a></li>
-                <li><a class="dropdown-item" href="{{ route('users.create') }}?type=teacher">Учителя</a></li>
+                <li><a class="dropdown-item" href="{{ route('users.create') }}?type=teacher">Преподавателя</a></li>
                 @if(Qs::userIsSuperAdmin())
                     <li><a class="dropdown-item" href="{{ route('users.create') }}?type=admin">Администратора</a></li>
                 @endif
@@ -36,7 +36,7 @@
         ],
         [
             'id' => 'teachers',
-            'title' => 'Учителя',
+            'title' => 'Преподаватели',
             'content' => view('pages.support_team.users.index.tabs.list', ['list' => [
                 'columns' => $list['columns'],
                 'items' => $list['items']['teacher']

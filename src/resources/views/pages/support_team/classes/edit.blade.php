@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('page_title', $class->id ? 'Изменить класс' : 'Добавить класс')
+@section('page_title', $class->id ? 'Изменить группу' : 'Добавить группу')
 
 @section('header_right')
     <button type="submit" form="form" class="btn btn-primary">Сохранить</button>

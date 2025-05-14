@@ -1,7 +1,12 @@
+@php use Illuminate\Support\Arr; @endphp
 <table class="table datatable-button-html5-columns">
     <thead>
     <tr>
         @foreach($list['columns'] as $column)
+            @php
+            if (!Arr::get($column, 'title')) continue;
+            @endphp
+
             <th>{{ $column['title'] }}</th>
         @endforeach
     </tr>
@@ -9,8 +14,11 @@
     <tbody>
     @foreach($list['items'] as $items)
         <tr>
-            @foreach($items as $code => $item)
-                @if($code == 'actions')
+            @foreach($list['columns'] as $column => $_)
+                @php
+                    $item = (array)Arr::get($items, $column);
+                @endphp
+                @if($column == 'actions')
                     <td class="text-center">
                         <div class="list-icons">
                             <div class="dropdown">
@@ -46,7 +54,7 @@
                         </div>
                     </td>
                 @else
-                    <td>{{ $item['value'] }} </td>
+                    <td>{{ Arr::get($item, 'value') }} </td>
                 @endif
             @endforeach
         </tr>

@@ -33,7 +33,7 @@ class MarkSelector extends FormRequest
             'exam_id' => 'Exam',
             'my_class_id' => 'Class',
             'section_id' => 'Section',
-            'subject_id' => 'Занятие',
+            'subject_id' => 'Предмет',
         ];
     }
 }

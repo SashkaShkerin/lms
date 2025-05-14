@@ -31,7 +31,7 @@
                                 <tbody>
                                 <tr>
                                     <td class="font-weight-bold">Тип</td>
-                                    <td>{{ $user->user_type }}</td>
+                                    <td>{{ Qs::userTypeName($user->user_type) }}</td>
                                 </tr>
 
                                 <tr>
@@ -58,7 +58,7 @@
                                     @endphp
 
                                 <tr>
-                                    <td class="font-weight-bold">Класс</td>
+                                    <td class="font-weight-bold">Группа</td>
                                     <td>{{ $sr->my_class->name }}</td>
                                 </tr>
                                 <tr>
@@ -87,7 +87,7 @@
 
                                 @if($user->user_type == 'teacher')
                                     <tr>
-                                        <td class="font-weight-bold">Мои занятия</td>
+                                        <td class="font-weight-bold">Мои предметы</td>
                                         <td>
                                             @foreach(Qs::findTeacherSubjects($user->id) as $sub)
                                                 <span> - {{ $sub->name.' ('.$sub->my_class->name.')' }}</span><br>

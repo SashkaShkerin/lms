@@ -1978,9 +1978,6 @@ select[size] {
       -webkit-transform: translateY(-50%);
               transform: translateY(-50%); }
 
-.navbar-expand.navbar-dark .navbar-collapse {
-  border-top: 1px solid rgba(255, 255, 255, 0.1); }
-
 .navbar-expand.navbar-light .navbar-collapse {
   border-top: 1px solid #ddd; }
 

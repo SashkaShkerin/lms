@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('page_title', 'Занятия')
+@section('page_title', 'Предметы')
 
 @section('header_right')
 
@@ -17,8 +17,8 @@
             <tr>
                 <th>Название</th>
                 <th>Короткое название</th>
-                <th>Класс</th>
-                <th>Учитель</th>
+                <th>Группа</th>
+                <th>Преподаватель</th>
                 <th>Действия</th>
             </tr>
             </thead>

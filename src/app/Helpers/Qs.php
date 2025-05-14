@@ -170,6 +170,18 @@ class Qs
         return Auth::user()->user_type == 'parent';
     }
 
+    public static function userTypeName ($type = null) {
+        $types = [
+            'student' => 'Ученик',
+            'parent' => 'Родитель',
+            'teacher' => 'Преподаватель',
+            'admin' => 'Администратор',
+            'super_admin' => 'Супер-админ',
+        ];
+
+        return $type ? $types[$type] : $types;
+    }
+
     public static function userIsStaff()
     {
         return in_array(Auth::user()->user_type, self::getStaff());

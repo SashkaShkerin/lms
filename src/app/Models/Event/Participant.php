@@ -13,7 +13,7 @@ class Participant extends Model
 
     const TYPE_CLASS = 10;
     const TYPE_STUDENT = 20;
-    const STATUS_INVITE = 20;
+    const STATUS_INVITE = 10;
     const STATUS_PRESENT = 20;
     const STATUS_ABSENT = 30;
 

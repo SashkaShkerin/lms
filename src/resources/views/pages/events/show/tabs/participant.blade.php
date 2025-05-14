@@ -1,10 +1,13 @@
 @php
 
+    use App\Helpers\Qs;
+
     $list = [
         'columns' => [
             'id' => ['title' => 'ID'],
             'name' => ['title' => 'Имя'],
-            'email' => ['title' => 'Почта'],
+//            'email' => ['title' => 'Почта'],
+            'status' =>false  && Qs::userIsTeamSAT() ? ['title' => 'Статус'] : [],
             'actions' => ['title' => 'Действия'],
         ],
         'items' => [],
@@ -13,16 +16,16 @@
         foreach($event->participants()->get() as $participant) {
             $user = $participant->fileable->user;
 
-            $list['items'][] = [
+            $item = [
                 'id' => [
                     'value' => $user->id,
                 ],
                 'name' => [
                     'value' => $user->name,
                 ],
-                'email' => [
-                    'value' => $user->email,
-                ],
+//                'email' => [
+//                    'value' => $user->email,
+//                ],
                 'actions' => [
                     'edit' => [
                         'route' => [
@@ -36,9 +39,18 @@
                     ],
                 ],
             ];
+
+            if (false && Qs::userIsTeamSAT()) {
+               $item['status'] = [
+                    'value' => view('pages.events.show.tabs.components.participant.select', [
+                        'participant' => $participant,
+                    ])
+                ];
+            }
+
+            $list['items'][] = $item;
         }
 @endphp
-
 
 
 @include('components.list', ['list' => $list])

@@ -5,7 +5,6 @@
         <a href="#" class="sidebar-mobile-main-toggle">
             <i class="icon-arrow-left8"></i>
         </a>
-        Navigation
         <a href="#" class="sidebar-mobile-expand">
             <i class="icon-screen-full"></i>
             <i class="icon-screen-normal"></i>
@@ -141,7 +140,7 @@
 
                     {{--Manage Classes--}}
                     <li class="nav-item">
-                        <a href="{{ route('classes.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['classes.index','classes.edit']) ? 'active' : '' }}"><i class="icon-windows2"></i> <span>Классы</span></a>
+                        <a href="{{ route('classes.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['classes.index','classes.edit']) ? 'active' : '' }}"><i class="icon-windows2"></i> <span>Группы</span></a>
                     </li>
 
                     <!-- {{--Manage Dorms--}}
@@ -156,7 +155,7 @@
 
                     {{--Manage Subjects--}}
                     <li class="nav-item">
-                        <a href="{{ route('subjects.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['subjects.index','subjects.edit',]) ? 'active' : '' }}"><i class="icon-pin"></i> <span>Занятия</span></a>
+                        <a href="{{ route('subjects.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['subjects.index','subjects.edit',]) ? 'active' : '' }}"><i class="icon-pin"></i> <span>Предметы</span></a>
                     </li>
                 @endif
 

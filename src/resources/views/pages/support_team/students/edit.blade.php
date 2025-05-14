@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="form-group row mb-3">
-                    <label class="col-lg-3 col-form-label font-weight-semibold">Класс</label>
+                    <label class="col-lg-3 col-form-label font-weight-semibold">Группа</label>
                     <div class="col-lg-9">
                         <select onchange="getClassSections(this.value)" name="my_class_id" required id="my_class_id" class="form-control select-search" data-placeholder="Выбрать">
                             <option value=""></option>
