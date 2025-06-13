@@ -52,7 +52,7 @@ class UserController extends Controller
                 'name' => ['title' => 'Имя'],
                 'email' => ['title' => 'Почта'],
                 'username' => ['title' => 'Логин'],
-                'user_type' => ['title' => 'Тип'],
+//                'user_type' => ['title' => 'Тип'],
                 'actions' => ['title' => 'Действия'],
             ], 
             'items' => [],
@@ -75,9 +75,9 @@ class UserController extends Controller
                 'username' => [
                     'value' => $user->username,
                 ],
-                'user_type' => [
-                    'value' => $user->user_type,
-                ],
+//                'user_type' => [
+//                    'value' => $user->user_type,
+//                ],
                 'actions' => [
                     'show' => [
                         'route' => [

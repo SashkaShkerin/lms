@@ -64,7 +64,7 @@ class EventsController extends Controller
         foreach ($events as $event) {
             $_events[] = [
                 'id' => $event->id,
-                'title' => $event->subject->name,
+                'title' => $event->subject?->name,
 
                 'start' => $event->start_time,
                 'end' => $event->end_time,

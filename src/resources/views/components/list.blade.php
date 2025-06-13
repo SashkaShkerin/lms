@@ -1,4 +1,4 @@
-@php use Illuminate\Support\Arr; @endphp
+@php use Illuminate\Support\Arr;@endphp
 <table class="table datatable-button-html5-columns">
     <thead>
     <tr>
@@ -16,6 +16,7 @@
         <tr>
             @foreach($list['columns'] as $column => $_)
                 @php
+                    if (!Arr::get($_, 'title')) continue;
                     $item = (array)Arr::get($items, $column);
                 @endphp
                 @if($column == 'actions')
