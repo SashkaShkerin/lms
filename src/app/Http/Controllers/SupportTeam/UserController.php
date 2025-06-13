@@ -163,7 +163,7 @@ class UserController extends Controller
         }
 
         /* Ensure that both username and Email are not blank*/
-        if(!$uname && !$req->email){
+        if(!$req->email){
             return back()->with('pop_error', __('msg.user_invalid'));
         }
 
