@@ -22,7 +22,6 @@ class SettingController extends Controller
     public function index()
     {
          $s = $this->setting->all();
-         $d['class_types'] = $this->my_class->getTypes();
          $d['s'] = $s->flatMap(function($s){
             return [$s->type => $s->description];
         });

@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\SupportTeam;
 
 use App\Helpers\Qs;
-use App\Helpers\Mk;
 use App\Http\Requests\Student\StudentRecordCreate;
 use App\Http\Requests\Student\StudentRecordUpdate;
 use App\Models\StudentRecord;
-use App\Repositories\LocationRepo;
 use App\Repositories\MyClassRepo;
 use App\Repositories\StudentRepo;
 use App\Repositories\UserRepo;
@@ -19,14 +17,13 @@ use Illuminate\Support\Str;
 
 class StudentRecordController extends Controller
 {
-    protected $loc, $my_class, $user, $student;
+    protected $my_class, $user, $student;
 
-   public function __construct(LocationRepo $loc, MyClassRepo $my_class, UserRepo $user, StudentRepo $student)
+   public function __construct(MyClassRepo $my_class, UserRepo $user, StudentRepo $student)
    {
        $this->middleware('teamSA', ['only' => ['edit','update', 'reset_pass', 'create', 'store', 'graduated'] ]);
        $this->middleware('super_admin', ['only' => ['destroy',] ]);
 
-        $this->loc = $loc;
         $this->my_class = $my_class;
         $this->user = $user;
         $this->student = $student;
@@ -44,7 +41,6 @@ class StudentRecordController extends Controller
        $data =  $req->only(Qs::getUserRecord());
        $sr =  $req->only(Qs::getStudentData());
 
-        $ct = $this->my_class->findTypeByClass($req->my_class_id)->code;
        /* $ct = ($ct == 'J') ? 'JSS' : $ct;
         $ct = ($ct == 'S') ? 'SS' : $ct;*/
 
@@ -54,7 +50,7 @@ class StudentRecordController extends Controller
         $data['password'] = Hash::make('student');
         $data['photo'] = Qs::getDefaultUserImage();
         $adm_no = $req->adm_no;
-        $data['username'] = strtoupper(Qs::getAppCode().'/'.$ct.'/'.$sr['year_admitted'].'/'.($adm_no ?: mt_rand(1000, 99999)));
+        $data['username'] = strtoupper(Qs::getAppCode().'/'.$sr['year_admitted'].'/'.($adm_no ?: mt_rand(1000, 99999)));
 
         if($req->hasFile('photo')) {
             $photo = $req->file('photo');
@@ -72,15 +68,6 @@ class StudentRecordController extends Controller
 
         $this->student->createRecord($sr); // Create Student
         return Qs::jsonStoreOk();
-    }
-
-    public function listByClass($class_id)
-    {
-        $data['my_class'] = $mc = $this->my_class->getMC(['id' => $class_id])->first();
-        $data['students'] = $this->student->findStudentsByClass($class_id);
-        $data['sections'] = $this->my_class->getClassSections($class_id);
-
-        return is_null($mc) ? Qs::goWithDanger() : view('pages.support_team.students.list', $data);
     }
 
     public function graduated()
@@ -157,8 +144,6 @@ class StudentRecordController extends Controller
 
         $this->student->updateRecord($sr_id, $srec); // Update St Rec
 
-        /*** If Class/Section is Changed in Same Year, Delete Marks/ExamRecord of Previous Class/Section ****/
-        Mk::deleteOldRecord($sr->user->id, $srec['my_class_id']);
 
         return Qs::jsonUpdateOk();
     }

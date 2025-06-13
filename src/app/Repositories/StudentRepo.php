@@ -2,9 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Helpers\Qs;
-use App\Models\Dorm;
-use App\Models\Promotion;
 use App\Models\StudentRecord;
 
 class StudentRepo {
@@ -75,40 +72,8 @@ class StudentRepo {
         return $this->gradStudents()->where($data)->with('user');
     }
 
-    public function getAllDorms()
-    {
-        return Dorm::orderBy('name', 'asc')->get();
-    }
-
     public function exists($student_id)
     {
         return $this->getRecord(['user_id' => $student_id])->exists();
     }
-
-    /************* Promotions *************/
-    public function createPromotion(array $data)
-    {
-        return Promotion::create($data);
-    }
-
-    public function findPromotion($id)
-    {
-        return Promotion::find($id);
-    }
-
-    public function deletePromotion($id)
-    {
-        return Promotion::destroy($id);
-    }
-
-    public function getAllPromotions()
-    {
-        return Promotion::with(['student', 'fc', 'tc', 'fs', 'ts'])->where(['from_session' => Qs::getCurrentSession(), 'to_session' => Qs::getNextSession()])->get();
-    }
-
-    public function getPromotions(array $where)
-    {
-        return Promotion::where($where)->get();
-    }
-
 }

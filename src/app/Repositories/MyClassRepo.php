@@ -2,9 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\ClassType;
 use App\Models\MyClass;
-use App\Models\Section;
 use App\Models\Subject;
 
 class MyClassRepo
@@ -12,12 +10,7 @@ class MyClassRepo
 
     public function all()
     {
-        return MyClass::orderBy('name', 'asc')->with('class_type')->get();
-    }
-
-    public function getMC($data)
-    {
-        return MyClass::where($data)->with('section');
+        return MyClass::orderBy('name', 'asc')->get();
     }
 
     public function find($id)
@@ -40,57 +33,8 @@ class MyClassRepo
         return MyClass::destroy($id);
     }
 
-    public function getTypes()
-    {
-        return ClassType::orderBy('name', 'asc')->get();
-    }
 
-    public function findType($class_type_id)
-    {
-        return ClassType::find($class_type_id);
-    }
 
-    public function findTypeByClass($class_id)
-    {
-        return ClassType::find($this->find($class_id)->class_type_id);
-    }
-
-    /************* Section *******************/
-
-    public function createSection($data)
-    {
-        return Section::create($data);
-    }
-
-    public function findSection($id)
-    {
-        return Section::find($id);
-    }
-
-    public function updateSection($id, $data)
-    {
-        return Section::find($id)->update($data);
-    }
-
-    public function deleteSection($id)
-    {
-        return Section::destroy($id);
-    }
-
-    public function isActiveSection($section_id)
-    {
-        return Section::where(['id' => $section_id, 'active' => 1])->exists();
-    }
-
-    public function getAllSections()
-    {
-        return Section::orderBy('name', 'asc')->with(['my_class', 'teacher'])->get();
-    }
-
-    public function getClassSections($class_id)
-    {
-        return Section::where(['my_class_id' => $class_id])->orderBy('name', 'asc')->get();
-    }
 
     /************* Subject *******************/
 

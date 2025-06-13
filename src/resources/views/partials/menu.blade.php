@@ -27,9 +27,6 @@
                     </a>
                 </li>
 
-
-
-
                 @if(Qs::userIsTeamSA())
                     {{--Manage Users--}}
                     <li class="nav-item">
@@ -46,6 +43,8 @@
                         <a href="{{ route('subjects.index') }}" class="nav-link {{ in_array(Route::currentRouteName(), ['subjects.index','subjects.edit',]) ? 'active' : '' }}"><i class="icon-pin"></i> <span>Предметы</span></a>
                     </li>
                 @endif
+
+                @include('pages.'.Qs::getUserType().'.menu')
 
                 </ul>
             </div>

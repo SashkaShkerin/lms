@@ -211,7 +211,6 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Qs' => App\Helpers\Qs::class,
         'Mk' => App\Helpers\Mk::class,
-        'Pay' => App\Helpers\Pay::class,
     ],
 
 ];

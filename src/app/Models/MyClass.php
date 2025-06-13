@@ -13,11 +13,6 @@ class MyClass extends Eloquent
         return $this->hasMany(Section::class);
     }
 
-    public function class_type()
-    {
-        return $this->belongsTo(ClassType::class);
-    }
-
     public function student_record()
     {
         return $this->hasMany(StudentRecord::class);

@@ -7,7 +7,6 @@ use App\User;
 use App\Helpers\Qs;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
-use App\Repositories\LocationRepo;
 use App\Repositories\MyClassRepo;
 use App\Repositories\UserRepo;
 use App\Http\Controllers\Controller;
@@ -19,30 +18,16 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
-    protected $user, $loc, $my_class;
+    protected $user, $my_class;
 
-    public function __construct(UserRepo $user, LocationRepo $loc, MyClassRepo $my_class)
+    public function __construct(UserRepo $user, MyClassRepo $my_class)
     {
         $this->middleware('teamSA', ['only' => ['index', 'store', 'edit', 'update'] ]);
         $this->middleware('super_admin', ['only' => ['reset_pass','destroy'] ]);
 
         $this->user = $user;
-        $this->loc = $loc;
         $this->my_class = $my_class;
     }
-
-     public function indfex()
-     {
-         $ut = $this->user->getAllTypes();
-         $ut2 = $ut->where('level', '>', 2);
-
-         $d['user_types'] = Qs::userIsAdmin() ? $ut2 : $ut;
-         $d['states'] = $this->loc->getStates();
-         $d['users'] = $this->user->getPTAUsers();
-         $d['nationals'] = $this->loc->getAllNationals();
-         $d['blood_groups'] = $this->user->getBloodGroups();
-         return view('pages.support_team.users._index', $d);
-     }
 
     public function index()
     { 

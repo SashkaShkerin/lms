@@ -21,12 +21,6 @@ class SettingUpdate extends FormRequest
     {
         return [
             'system_name' => 'required|string|min:3',
-//            'current_session' => 'required|string',
-//            'address' => 'required|string|min:15',
-//            'system_email' => 'sometimes|nullable|email',
-//            'lock_exam' => 'required',
-//            'logo' => 'sometimes|nullable|image|mimes:jpeg,gif,png,jpg|max:2048',
-
         ];
     }
 
@@ -34,8 +28,6 @@ class SettingUpdate extends FormRequest
     {
         return  [
             'system_name' => 'School Name',
-//            'system_email' => 'School Email',
-//            'current_session' => 'Current Session',
         ];
     }
 
