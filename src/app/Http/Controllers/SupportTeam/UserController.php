@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\SupportTeam;
 
-use App\Models\StudentRecord;
 use App\User;
 use App\Helpers\Qs;
 use Illuminate\Http\Request;
@@ -37,7 +36,6 @@ class UserController extends Controller
                 'name' => ['title' => 'Имя'],
                 'email' => ['title' => 'Почта'],
                 'username' => ['title' => 'Логин'],
-//                'user_type' => ['title' => 'Тип'],
                 'actions' => ['title' => 'Действия'],
             ], 
             'items' => [],
@@ -60,9 +58,6 @@ class UserController extends Controller
                 'username' => [
                     'value' => $user->username,
                 ],
-//                'user_type' => [
-//                    'value' => $user->user_type,
-//                ],
                 'actions' => [
                     'show' => [
                         'route' => [

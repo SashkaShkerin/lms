@@ -80,15 +80,6 @@ class MyClassController extends Controller
     {
         $data = $req->all();
         $mc = $this->my_class->create($data);
-//
-//        // Create Default Section
-//        $s =['my_class_id' => $mc->id,
-//            'name' => 'A',
-//            'active' => 1,
-//            'teacher_id' => NULL,
-//        ];
-//
-//        $this->my_class->createSection($s);
 
         return Qs::jsonStoreOk();
     }

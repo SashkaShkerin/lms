@@ -44,14 +44,9 @@ class HomeController extends Controller
 
         $_events = [];
         foreach ($events as $event) {
-
-
-
             $_events[] = [
                 'id' => $event->id,
                 'title' => 'my event',
-                'start' => (new \DateTime($event->start_time, new \DateTimeZone('UTC')))->format('Y-m-d\TH:i:s'),
-                'end' => (new \DateTime($event->end_time, new \DateTimeZone('UTC')))->format('Y-m-d\TH:i:s'),
 
                 'start' => $event->start_time,
                 'end' => $event->end_time,
@@ -59,14 +54,12 @@ class HomeController extends Controller
                 'extendedProps' => [
                     'department' => 'BioChemistry'
                 ],
-                  'description' => 'Lecture'
+                'description' => 'Lecture'
             ];
         }
 
         $_events = array_merge($_events, $_events);
         
-
-
         return view('pages.home.dashboard')
             ->with('events', $_events);
     }

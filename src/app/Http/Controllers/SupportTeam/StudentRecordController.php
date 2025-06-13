@@ -21,7 +21,7 @@ class StudentRecordController extends Controller
 
    public function __construct(MyClassRepo $my_class, UserRepo $user, StudentRepo $student)
    {
-       $this->middleware('teamSA', ['only' => ['edit','update', 'reset_pass', 'create', 'store', 'graduated'] ]);
+       $this->middleware('teamSA', ['only' => ['edit','update', 'reset_pass', 'create', 'store'] ]);
        $this->middleware('super_admin', ['only' => ['destroy',] ]);
 
         $this->my_class = $my_class;
@@ -40,9 +40,6 @@ class StudentRecordController extends Controller
     {
        $data =  $req->only(Qs::getUserRecord());
        $sr =  $req->only(Qs::getStudentData());
-
-       /* $ct = ($ct == 'J') ? 'JSS' : $ct;
-        $ct = ($ct == 'S') ? 'SS' : $ct;*/
 
         $data['user_type'] = 'student';
         $data['name'] = ucwords($req->name);
@@ -68,24 +65,6 @@ class StudentRecordController extends Controller
 
         $this->student->createRecord($sr); // Create Student
         return Qs::jsonStoreOk();
-    }
-
-    public function graduated()
-    {
-        $data['my_classes'] = $this->my_class->all();
-        $data['students'] = $this->student->allGradStudents();
-
-        return view('pages.support_team.students.graduated', $data);
-    }
-
-    public function not_graduated($sr_id)
-    {
-        $d['grad'] = 0;
-        $d['grad_date'] = NULL;
-        $d['session'] = Qs::getSetting('current_session');
-        $this->student->updateRecord($sr_id, $d);
-
-        return back()->with('flash_success', __('msg.update_ok'));
     }
 
     public function show($sr_id)
